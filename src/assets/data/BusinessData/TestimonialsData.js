@@ -6,57 +6,50 @@ import icon4 from '../../../assets/images/business/icon-4.svg';
 
 export const testimonialData = [
     {
-        text1: 'We use as filler text for layouts, non-readability is of great importancebut because those who do not know how to pursue pleasure',
-        highlightClass: 'bg-aero-blue',
-        highlightText: 'rationally encounter consequences',
-        text2: 'that are pleasure rationally encounter ❤️ ❤️',
-        author: 'Corel Den',
-        position: 'CO, Arterry',
+        text1: 'Filing Lab made our company registration and compliance process smooth and stress-free. Their team explained every step clearly and handled all filings on time.',
+        highlightClass: '',
+        highlightText: '',
+        text2: '',
+        author: 'Ramesh Kumar',
+        position: 'Founder, Small Business',
         icon: icon1
     },
     {
-        text1: 'Making this the first true 😍 generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate',
+        text1: 'The team at Filing Lab provided accurate guidance for my income tax filing. Communication was clear, and the entire process was handled professionally.',
         highlightClass: '', // No highlight class for this example
-        highlightText: '👏👏',
+        highlightText: '',
         text2: '',
-        author: 'Leo Quode',
-        position: 'CEO, Expresso',
+        author: 'Anita Sharma',
+        position: 'Salaried Professional',
         icon: icon2
     },
     {
-        text1: 'The best ',
-        highlightClass: 'color-template',
-        highlightText: '@staco',
-        text2: ' is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain but because',
-        author: 'Roe Smith',
-        position: 'Director, Growth King',
+        text1: 'We rely on Filing Lab for GST and ongoing compliance. Their structured approach and timely reminders help us stay compliant without constant follow-ups.',
+        highlightClass: '',
+        highlightText: '',
+        text2: '',
+        author: 'Vijay Prasad',
+        position: 'Director, Private Limited Company',
         icon: icon3
     },
     {
-        text1: 'Very denounce with righteous indignation and dislike men who are so',
-        highlightClass: 'bg-aero-blue',
-        highlightText: 'beguiled and demoralized',
-        text2: ' by the charms of pleasure of the moment, so blinded by desire encounter 🥰 🤜 🤛',
-        author: 'Arong French',
-        position: 'SEO Engineer',
+        text1: 'Filing Lab supported us with LLP registration and post-registration compliance. Their practical advice and responsiveness made a real difference.',
+        highlightClass: '',
+        highlightText: '',
+        text2: '',
+        author: 'Neha Iyer',
+        position: 'Partner, Consulting Firm',
         icon: icon4
     },
     {
-        text1: 'We use as filler text for layouts, non-readability is of great importancebut because those who do not know how to pursue pleasure',
-        highlightClass: 'bg-aero-blue',
-        highlightText: 'rationally encounter consequences',
-        text2: 'that are pleasure rationally encounter ❤️ ❤️',
-        author: 'Corel Den',
-        position: 'CO, Arterry',
+        text1: 'I approached Filing Lab for notice-related support. The team handled the matter carefully and guided me throughout the process with confidence.',
+        highlightClass: '',
+        highlightText: '',
+        text2: '',
+        author: 'Suresh N',
+        position: 'Individual Taxpayer',
         icon: icon1
     },
-    {
-        text1: 'Making this the first true 😍 generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate',
-        highlightClass: '', // No highlight class for this example
-        highlightText: '👏👏',
-        text2: '',
-        author: 'Leo Quode',
-        position: 'CEO, Expresso',
-        icon: icon2
-    },
+   
 ];
+

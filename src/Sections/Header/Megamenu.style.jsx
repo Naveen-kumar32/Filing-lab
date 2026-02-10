@@ -1,21 +1,6 @@
 import styled from "styled-components";
 
 const MegaMenuWrapper = styled.div`
-  // .mega-menu-wrapper {
-  //   position: absolute;
-  //   top: 80px; /* Adjusts the position below the header */
-  //   left: -200px;
-  //   padding: 10px;
-  //   width: 70vw;
-  //   z-index: 1000;
-  //   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  //   border-radius: 8px;
-  //   max-height: 80vh;
-  //   overflow-y: auto;
-  //   background: #ffffff;
-  //   transition: all 0.3s ease;
-  // }
-
   .mega-menu {
     display: flex;
     width: 100%;
@@ -23,57 +8,78 @@ const MegaMenuWrapper = styled.div`
     align-items: flex-start;
   }
 
-  /* Left side menu titles */
-  .menu-title-panel {
-    width: 250px;
-    background-color: #f9f9f9;
-    padding: 20px;
+  .mega-menu-card {
+    width: 100%;
+  }
+
+  /* Left side menu titles - Categories */
+  .mega-menu-left {
+    width: 25%;
+    background: #ffffff;
+    padding: 15px;
     border-right: 1px solid #ddd;
   }
 
   .menu-title-item {
-    color: #002145;
+    color: #000000;
     padding: 10px 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s linear, color 0.3s linear;
     border-radius: 6px;
     margin-bottom: 8px;
     width: 100%;
+    font-weight: 500;
   }
 
   .menu-title-item:hover {
-    background-color: #002145 !important;
-    color: #ed740a;
+    background: linear-gradient(90deg, #041783 0%, #1e90ff 50%, #ffffff 100%);
+    color: #ffffff;
+    font-weight: bold;
   }
 
   .menu-title-item.active {
     font-weight: bold;
-    background-color: #002145 !important;;
-    color: #ed740a;
+    background: linear-gradient(90deg, #041783 0%, #1e90ff 50%, #ffffff 100%);
+    color: #ffffff;
   }
 
   /* Right content panel with two columns */
-  .mega-menu-content {
-    display: flex;  
-    justify-content: space-between;
-    flex-wrap: nowrap; 
-    width: 100%;
-    padding : 40px;
-    background-color: #ffffff;  
+  .mega-menu-right {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    padding: 10px;
   }
 
   .mega-menu-column {
-    width: 50%; /* Ensures each column takes up exactly 50% of the width */
+    width: 50%;
     padding: 10px;
-    overflow-y: auto; /* If content overflows, adds scroll */
-    max-height: 70vh; /* Restrict height */
+    overflow-y: scroll;
+    max-height: 300px;
     
+    /* Show scrollbar */
     &::-webkit-scrollbar {
-      width: 0px; /* Hides the scrollbar */
+      width: 8px;
     }
 
-    -ms-overflow-style: none;  /* For Internet Explorer */
-    scrollbar-width: none; /* For Firefox */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    -ms-overflow-style: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
   }
 
   .mega-menu-list {
@@ -83,24 +89,27 @@ const MegaMenuWrapper = styled.div`
   }
 
   .mega-menu-list li {
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
-  
   .mega-menu-list a {
-    
-    // text-decoration: none;
     font-size: 14px;
-    transition: color 0.2s;
+    transition: all 0.2s ease;
+    color: #002145;
+    text-decoration: none;
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #ffffff;
   }
-    .mega-menu-list a:hover {
-  // background-color: #002145;
-  color: #ed740a;
-  // display: inline-block;
-  
-  // padding: 8px 10px;
-  // border-radius: 6px;
-}
+
+  .mega-menu-list a:hover {
+    background-color: #e8e8e8;
+    color: #002145;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
 
   /* Hide all tab content & images by default */
   .mega-menu-tabcontent,
@@ -109,31 +118,28 @@ const MegaMenuWrapper = styled.div`
     display: none !important;
   }
 
-  /* Responsive tweaks */
   @media (max-width: 1024px) {
-    .mega-menu-wrapper {
-      width: 80vw;
+    .mega-menu-left {
+      width: 30%;
     }
 
-    .mega-menu {
-      flex-direction: column;
-    }
-
-    .menu-title-panel {
-      width: 100%;
-      border-right: none;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .mega-menu-content {
-      padding: 15px;
+    .mega-menu-right {
+      width: 70%;
     }
   }
 
   @media (max-width: 768px) {
+    .mega-menu-left {
+      width: 100%;
+    }
+
+    .mega-menu-right {
+      width: 100%;
+      flex-direction: column;
+    }
+
     .mega-menu-column {
       width: 100%;
-      padding-right: 0;
     }
   }
 `;

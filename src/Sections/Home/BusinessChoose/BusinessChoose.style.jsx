@@ -54,8 +54,8 @@ const BusinessChooseStyle = styled.section`
           &::after {
             content: "";
             position: absolute;
-            height: 2px;
-            background: ${({ theme }) => theme.colors.heroimg1Bg};
+            height: 4px;
+            background: #ff9a42;
             border-radius: 1px;
             width: 20%;
             bottom: -8px;
@@ -65,7 +65,7 @@ const BusinessChooseStyle = styled.section`
           }
           span {
             &:nth-child(1) {
-              color: ${({ theme }) => theme.colors.heroimg1Bg};
+              color: #ff9a42;
             }
           }
         }
@@ -73,16 +73,6 @@ const BusinessChooseStyle = styled.section`
       .tab-btn {
         height: 26px;
         text-align: center;
-        &::after {
-            content: "";
-            position: absolute;
-            height: 2px;
-            background: ${({ theme }) => theme.colors.blackColor}26;
-            border-radius: 1px;
-            width: 100%;
-            bottom: -8px;
-            left: 0px;
-          }
       }
     }
   }
@@ -103,8 +93,12 @@ const BusinessChooseStyle = styled.section`
     color: ${({ theme }) => theme.colors.title};
     transition: 0.3s;
     span {
-      color: ${({ theme }) => theme.colors.iconColor};
+      color: #ff9a42;
       transition: 0.3s;
+      
+      &:nth-child(1) {
+        color: #ff9a42;
+      }
     }
 
     .text,
@@ -114,7 +108,7 @@ const BusinessChooseStyle = styled.section`
 
     &.active {
       span {
-        color: ${({ theme }) => theme.colors.heroimg1Bg};
+        color: #ff9a42;
       }
 
       .text,
@@ -220,7 +214,7 @@ const BusinessChooseStyle = styled.section`
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
-      height: 2px;
+      height: 4px;
       border: none;
       background: transparent;
       z-index: 2000;
@@ -230,11 +224,11 @@ const BusinessChooseStyle = styled.section`
       background: transparent;
     }
     progress::-webkit-progress-value {
-      background: ${({ theme }) => theme.colors.heroimg1Bg};
+      background: #ff9a42;
       background-attachment: fixed;
     }
     progress::-moz-progress-bar {
-      background: ${({ theme }) => theme.colors.heroimg1Bg};
+      background: #ff9a42;
       background-attachment: fixed;
     }
   }

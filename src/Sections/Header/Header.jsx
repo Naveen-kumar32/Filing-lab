@@ -5,6 +5,8 @@ import Data from "../../assets/data/header/headerHomeMenu";
 import MegaMenu from "./MegaMenu";
 import LanguageDropdown from "./dropdown/LanguageDropdown";
 import MobileMenu from "./mobileMenu/MobileMenu";
+import { FiMail, FiPhone } from "react-icons/fi";
+import { FaWhatsapp, FaBars } from "react-icons/fa";
 
 //logo images
 import LogoImg1 from "../../assets/images/logo/logo.svg";
@@ -30,6 +32,30 @@ const Header = ({ variant, ...props }) => {
   const [isMobileMenu, setIsMobileMenu] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [openMegaMenuIndex, setOpenMegaMenuIndex] = useState(null);
+  const megaMenuRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (megaMenuRef.current && !megaMenuRef.current.contains(event.target)) {
+        setOpenMegaMenuIndex(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Handle navbar menu item click
+  const handleMenuItemClick = (index) => {
+    if (openMegaMenuIndex === index) {
+      // If clicking the same item, close the dropdown
+      setOpenMegaMenuIndex(null);
+    } else {
+      // If clicking a different item, open that dropdown
+      setOpenMegaMenuIndex(index);
+    }
+  };
 
 
   const handleMobileMenu = () => {
@@ -117,7 +143,7 @@ const Header = ({ variant, ...props }) => {
                       variant != "defi" &&
                       variant != "finance" &&
                       variant != "account" && (
-                        <span style={{fontSize:'50px',fontWeight:'600', color:' #002145'}}>Filing<span style={{color:" #ed740a"}}>Lab</span>
+                        <span style={{fontSize:'40px',fontWeight:'600', color:' #002145'}}>Filing<span style={{color:" #ed740a"}}>Lab</span>
                           {/* <img
                             src={LogoImg2}
                             alt="logo"
@@ -262,13 +288,12 @@ const Header = ({ variant, ...props }) => {
 
                   <div className="collapse navbar-collapse header-navbar-content">
                     {/* main menu */}
-                    <ul className="navbar-nav main-menu">
+                    <ul className="navbar-nav main-menu" ref={megaMenuRef}>
                       {Data?.map((menuItem, i) => (
                         <li
                         key={i}
                         className={`nav-item ${menuItem.hasMegaMenu ? "home-nav" : ""}`}
-                        onClick={() =>
-                          setOpenMegaMenuIndex(openMegaMenuIndex === i ? null : i)}>
+                        onClick={() => handleMenuItemClick(i)}>
                           <NavLink
                             className={` ${
                               menuItem.hasMegaMenu
@@ -290,23 +315,6 @@ const Header = ({ variant, ...props }) => {
 
                     {/* header extra */}
                     <ul className="header-extra">
-                      {variant != "corporate" &&
-                        variant != "crypto" &&
-                        variant != "crypto-token" &&
-                        variant != "crypto2" &&
-                        variant != "defi" &&
-                        variant != "newsletter" &&
-                        variant != "portfolio" &&
-                        variant != "finance" && (
-                          <li>
-                            <NavLink to="/sign-in" className={`${variant}`}>
-                              Sign in
-                            </NavLink>
-                          </li>
-                        )}
-
-                      
-
                       {variant === "chatbot" && (
                         <li>
                           <NavLink to="/sign-up" className="bg-navy-btn">
@@ -319,8 +327,6 @@ const Header = ({ variant, ...props }) => {
                           </NavLink>
                         </li>
                       )}
-
-                      
 
                       {variant === "crypto" && (
                         <li>
@@ -373,8 +379,6 @@ const Header = ({ variant, ...props }) => {
                           </NavLink>
                         </li>
                       )}
-
-                      
 
                       {variant === "v3" && (
                         <li>
@@ -449,39 +453,6 @@ const Header = ({ variant, ...props }) => {
                         </li>
                       )}
 
-                      
-                      {variant === "crypto2" && (
-                        <>
-                          <li>
-                            <div className="qr-code-btn relative">
-                              <button className="view-qr">
-                                <img src={QrImg} alt="icon" />
-                              </button>
-                              <div className="qr-code-box">
-                                <div className="scan-qr text-right">
-                                  <img src={QrCodeImg1} alt="img" />
-                                </div>
-                                <div className="scan-qr">
-                                  <img src={QrCodeImg2} alt="img" />
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                          <li>
-                            <NavLink to="/sign-up" className="crypto2-blue-btn">
-                              <span className="btn-inner">
-                                <span className="btn-normal-text">
-                                  Get Wallet
-                                </span>
-                                <span className="btn-hover-text">
-                                  Get Wallet
-                                </span>
-                              </span>
-                            </NavLink>
-                          </li>
-                        </>
-                      )}
-
                       {(variant === "corporate" ||
                         variant === "newsletter" ||
                         variant === "finance") && (
@@ -550,6 +521,70 @@ const Header = ({ variant, ...props }) => {
                           )}
                         </>
                       )}
+
+                      {variant === "crypto2" && (
+                        <>
+                          <li>
+                            <div className="qr-code-btn relative">
+                              <button className="view-qr">
+                                <img src={QrImg} alt="icon" />
+                              </button>
+                              <div className="qr-code-box">
+                                <div className="scan-qr text-right">
+                                  <img src={QrCodeImg1} alt="img" />
+                                </div>
+                                <div className="scan-qr">
+                                  <img src={QrCodeImg2} alt="img" />
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <NavLink to="/sign-up" className="crypto2-blue-btn">
+                              <span className="btn-inner">
+                                <span className="btn-normal-text">
+                                  Get Wallet
+                                </span>
+                                <span className="btn-hover-text">
+                                  Get Wallet
+                                </span>
+                              </span>
+                            </NavLink>
+                          </li>
+                        </>
+                      )}
+
+                      {/* Sign In Button */}
+                      {variant != "corporate" &&
+                        variant != "crypto" &&
+                        variant != "crypto-token" &&
+                        variant != "crypto2" &&
+                        variant != "defi" &&
+                        variant != "newsletter" &&
+                        variant != "portfolio" &&
+                        variant != "finance" && (
+                          <li>
+                            <NavLink to="/sign-in" className={`${variant}`}>
+                              Sign in
+                            </NavLink>
+                          </li>
+                        )}
+
+                      {/* Toggle Bar - Last Item */}
+                      {variant != "corporate" &&
+                        variant != "crypto" &&
+                        variant != "crypto-token" &&
+                        variant != "crypto2" &&
+                        variant != "defi" &&
+                        variant != "newsletter" &&
+                        variant != "portfolio" &&
+                        variant != "finance" && (
+                          <li className="toggle-bar-item">
+                            <button className="toggle-bar-btn animated-icon">
+                              <FaBars />
+                            </button>
+                          </li>
+                        )}
                     </ul>
                   </div>
                 </div>

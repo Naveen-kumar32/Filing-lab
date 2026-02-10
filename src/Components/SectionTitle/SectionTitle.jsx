@@ -12,6 +12,8 @@ const SectionTitle = ({
   titleMargin,
   subtitleClass,
   titleClass,
+  titleStyle,
+  subtitleStyle,
 }) => {
   useEffect(() => {
     Splitting();
@@ -27,9 +29,9 @@ const SectionTitle = ({
       {...(parentClass === "defi" && { "data-splitting": true })}
     >
       {subtitle && (
-        <span className={`sub-title ${subtitleClass}`}>{subtitle}</span>
+        <span className={`sub-title ${subtitleClass}`} style={subtitleStyle}>{subtitle}</span>
       )}
-      {title && <h2 className={`title ${titleClass}`}>{title}</h2>}
+      {title && <h2 className={`title ${titleClass}`} style={titleStyle}>{title}</h2>}
     </SectionTitleStyleWrapper>
   );
 };

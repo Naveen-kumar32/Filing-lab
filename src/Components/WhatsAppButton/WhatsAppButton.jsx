@@ -4,8 +4,8 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsAppButtonWrapper = styled.div`
   position: fixed;
-  bottom: 80px; /* Adjust as needed */
-  right: 28px;
+  bottom: 20px; 
+  left: 28px;
   z-index: 1000;
   cursor: pointer;
   background-color: #25d366;

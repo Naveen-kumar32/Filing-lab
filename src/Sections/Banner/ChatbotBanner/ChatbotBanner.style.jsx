@@ -9,7 +9,8 @@ const ChatbotBannerStyle = styled.section`
   &.chatbot-banner {
     position: relative;
     z-index: 1;
-    background: ${({ theme }) => theme.colors.chatbotPrimary} !important;
+    // background: ${({ theme }) => theme.colors.chatbotPrimary} !important;
+    background-color: rgba(4, 23, 131, 1) !important;
     background: url(${BgImg});
     background-size: cover;
     background-position: left center;
@@ -48,6 +49,7 @@ const ChatbotBannerStyle = styled.section`
         font-weight: 700;
         line-height: 80px;
         text-align: left;
+        color: #ffffff;
         span {
           position: relative;
           padding: 0px !important;
@@ -73,6 +75,7 @@ const ChatbotBannerStyle = styled.section`
 
       p {
         margin-top: 8px;
+        color: #ffffff;
       }
     }
   }
@@ -93,9 +96,9 @@ const ChatbotBannerStyle = styled.section`
       width: 100%;
       background: linear-gradient(
         90deg,
-        #041646 4.17%,
-        rgba(4, 22, 70, 0.520833) 51.04%,
-        rgba(4, 22, 70, 0) 100%
+        rgba(4, 23, 131,1)4.17%,
+        rgba(4, 23, 131, 0.520833) 51.04%,
+        rgba(4, 23, 131, 0) 100%
       );
     }
   }
@@ -220,32 +223,101 @@ const ChatbotBannerStyle = styled.section`
   margin-top: 30px;
   display: flex;
   align-items: center;
-  background: #ffffff;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.31);
   border-radius: 40px;
-  padding: 1px;
+  padding: 0 8px 0 20px;
   width: 500px;
+  height: 55px;
 }
 
 .search-box input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 14px 20px;
-  font-size: 16px;
+  padding: 0;
+  font-size: 14px;
   color: #0b2a4a;
   background: transparent;
+  transition: all 0.8s ease;
+  height: 100%;
+  text-align: left;
+}
+
+.search-box input::placeholder {
+  color: #ffffffff;
 }
 
 .search-box button {
-  background: #0b2a4a;
+  background: #00a8e8;
   color: white;
   border: none;
-  padding: 12px 26px;
-  border-radius: 30px;
+  padding: 10px 28px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  margin: 0;
+  height: 45px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
+.search-box button:hover {
+  background: #0099d4;
+}
+
+/* RECOMMENDED SERVICES */
+.recommended-services {
+  margin-top: 40px;
+  max-width: 500px;
+}
+
+.services-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.service-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  border-radius: 16px;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.service-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+
+  .banner-title {
+    color: #ffffff !important;
+  }
 
   @media screen and (max-width: 1199px) {
     &.chatbot-banner {

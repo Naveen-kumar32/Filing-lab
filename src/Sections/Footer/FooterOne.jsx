@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FooterStyleWrapper from "./Footer.style";
 import FooterSocialLinks from "../../assets/data/footer/footerSocialLinks";
 import FooterLogo from "../../assets/images/logo/logo.svg";
@@ -7,6 +7,8 @@ import FooterContractCard from "../../Components/FooterContractCard/FooterContra
 import FooterNewsletter from '../../Components/FooterNewsletter/FooterNewsletter';
 
 const FooterOne = () => {
+  const [showAllSections, setShowAllSections] = useState(false);
+
   return (
     <FooterStyleWrapper className="footer-section home-footer">
       <div className="footer-inner">
@@ -34,9 +36,9 @@ const FooterOne = () => {
                   <div className="footer-address-box">
                     <h4>Address</h4>
                     <p>
-                      123 Business Street, Suite 100<br />
-                      New York, NY 10001<br />
-                      United States
+                      Plot no. 31, Lisa Ponnammal St, 3rd Floor,<br />
+                      Golden George Nagar, Nerkundram,<br />
+                      Chennai, Tamil Nadu - 600107
                     </p>
                   </div>
 
@@ -104,42 +106,125 @@ const FooterOne = () => {
                   </div>
 
                   {/* Business Section */}
-                  <div className="footer-links-section">
-                    <h3>Business</h3>
+                 <div className="footer-links-section">
+                    <h3 className="footer-section-title">Business</h3>
                     <ul className="footer-links-list">
                       <li><a href="#">Private Limited Company</a></li>
                       <li><span className="separator">|</span><a href="#">LLP</a></li>
-                      <li><span className="separator">|</span><a href="#">One Person Company</a></li>
+                      <li><span className="separator">|</span><a href="#">OPC</a></li>
                       <li><span className="separator">|</span><a href="#">Partnership Firm</a></li>
                       <li><span className="separator">|</span><a href="#">Sole Proprietorship</a></li>
                       <li><span className="separator">|</span><a href="#">Startup India</a></li>
                       <li><span className="separator">|</span><a href="#">MSME / Udyam</a></li>
                       <li><span className="separator">|</span><a href="#">Section 8 Company</a></li>
-                      <li><span className="separator">|</span><a href="#">Trust Registration</a></li>
+                      <li><span className="separator">|</span><a href="#">Trust</a></li>
                     </ul>
+                    <div className="footer-section-divider"></div>
                   </div>
+
+                                    {/* LICENSING */}
+                  <div className="footer-links-section">
+                    <h3 className="footer-section-title">Licensing</h3>
+                    <ul className="footer-links-list">
+                      <li><a href="#">GST</a></li>
+                      <li><span className="separator">|</span><a href="#">IEC (Import Export Code)</a></li>
+                      <li><span className="separator">|</span><a href="#">FSSAI</a></li>
+                      <li><span className="separator">|</span><a href="#">FSSAI State</a></li>
+                      <li><span className="separator">|</span><a href="#">FSSAI Central</a></li>
+                      <li><span className="separator">|</span><a href="#">Shop & Establishment</a></li>
+                      <li><span className="separator">|</span><a href="#">Digital Signature (DGFT Version)</a></li>
+                      <li><span className="separator">|</span><a href="#">ISO</a></li>
+                    </ul>
+                    <div className="footer-section-divider"></div>
+                  </div>
+
 
                   {/* Taxation Section */}
                   <div className="footer-links-section">
-                    <h3>Taxation</h3>
+                    <h3 className="footer-section-title">Taxation</h3>
                     <ul className="footer-links-list">
-                      <li><a href="#">GST Registration</a></li>
-                      <li><span className="separator">|</span><a href="#">Income Tax</a></li>
-                      <li><span className="separator">|</span><a href="#">Compliance</a></li>
-                      <li><span className="separator">|</span><a href="#">Filing Returns</a></li>
+                      <li><a href="#">GST</a></li>
+                      <li><span className="separator">|</span><a href="#">GST Return</a></li>
+                      <li><span className="separator">|</span><a href="#">GST Annual Return(GSTR-9 / 9C)</a></li>
+                      <li><span className="separator">|</span><a href="#">IT Return</a></li>
+                      <li><span className="separator">|</span><a href="#">Company ITR</a></li>
+                      <li><span className="separator">|</span><a href="#">TDS Return</a></li>
+                      <li><span className="separator">|</span><a href="#">IT Notice Reply</a></li>
+                    </ul>
+                    <div className="footer-section-divider"></div>
+                  </div>
+
+                  {showAllSections && (
+                    <>
+                  {/* Company Section */}
+                   <div className="footer-links-section">
+                    <h3 className="footer-section-title">Compliance</h3>
+                    <ul className="footer-links-list">
+                      <li><a href="#">Annual Compliance</a></li>
+                      <li><span className="separator">|</span><a href="#">Annual Compliance for Pvt Ltd</a></li>
+                      <li><span className="separator">|</span><a href="#">Annual Filing for LLP</a></li>
+                      <li><span className="separator">|</span><a href="#">MCA Compliance / MCA Services</a></li>
+                      <li><span className="separator">|</span><a href="#">DIN KYC Filing</a></li>
+                    </ul>
+                    <div className="footer-section-divider"></div>
+                  </div>
+
+                   {/* FINANCE */}
+                  <div className="footer-links-section">
+                    <h3 className="footer-section-title">Finance</h3>
+                    <ul className="footer-links-list">
+                      <li><a href="#">Accounting</a></li>
+                      <li><span className="separator">|</span><a href="#">Bookkeeping</a></li>
+                      <li><span className="separator">|</span><a href="#">Virtual CFO</a></li>
+                      <li><span className="separator">|</span><a href="#">NBFC</a></li>
+                    </ul>
+                    <div className="footer-section-divider"></div>
+                  </div>
+
+                   {/* LEGAL */}
+                  <div className="footer-links-section">
+                    <h3 className="footer-section-title">Legal</h3>
+                    <ul className="footer-links-list">
+                      <li><a href="#">Agreements & Contracts</a></li>
+                      <li><span className="separator">|</span><a href="#">Legal Notice</a></li>
+                      <li><span className="separator">|</span><a href="#">Will Drafting</a></li>
+                      <li><span className="separator">|</span><a href="#">Power of Attorney (POA)</a></li>
+                    </ul>
+                    <div className="footer-section-divider"></div>
+                  </div>
+
+                   {/* ENVIRONMENT */}
+                  <div className="footer-links-section">
+                    <h3 className="footer-section-title">Advisory</h3>
+                    <ul className="footer-links-list">
+                      <li><a href="#">Business Consultants</a></li>
+                      <li><span className="separator">|</span><a href="#">Startup Planning</a></li>
+                      <li><span className="separator">|</span><a href="#">Financial Consultancy Services</a></li>
+                    </ul>
+                    <div className="footer-section-divider"></div>
+                  </div>
+                    </>
+                  )}
+
+                   {/* ENVIRONMENT */}
+                  <div className="footer-links-section">
+                    <h3 className="footer-section-title">Environment</h3>
+                    <ul className="footer-links-list">
+                      <li><a href="#">Environmental Clearance</a></li>
+                      <li><span className="separator">|</span><a href="#">Environmental Impact Assessment (EIA)</a></li>
                     </ul>
                   </div>
 
-                  {/* Company Section */}
-                  <div className="footer-links-section">
-                    <h3>Company</h3>
-                    <ul className="footer-links-list">
-                      <li><a href="#">About Us</a></li>
-                      <li><span className="separator">|</span><a href="#">Contact Us</a></li>
-                      <li><span className="separator">|</span><a href="#">Careers</a></li>
-                      <li><span className="separator">|</span><a href="#">FAQ</a></li>
-                    </ul>
+                  {/* See More / See Less Button */}
+                  <div className="footer-see-more-container">
+                    <button 
+                      className="footer-see-more-button"
+                      onClick={() => setShowAllSections(!showAllSections)}
+                    >
+                      {showAllSections ? 'See Less' : 'See More'}
+                    </button>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -182,3 +267,4 @@ const FooterOne = () => {
 };
 
 export default FooterOne;
+

@@ -80,7 +80,7 @@ const TeamBestPricingStyleWrapper = styled.section`
   }
 
   .best-pricing-card {
-    padding: 38px;
+    padding: 28px;
     background-color: ${({ theme }) => theme.colors.whiteColor};
     position: relative;
     border: 1px solid ${({ theme }) => theme.colors.blackColor}26;
@@ -88,7 +88,7 @@ const TeamBestPricingStyleWrapper = styled.section`
     min-width: 0;
     display: flex;
     flex-direction: column;
-    height: 600px;
+    height: 650px;
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform: scale(1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -102,9 +102,11 @@ const TeamBestPricingStyleWrapper = styled.section`
     .best-pricing-card-header {
       h3 {
         margin-bottom: 0;
-        line-height: 1;
+        line-height: 1.3;
+        font-size: 22px;
+        font-weight: 700;
         span {
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 500;
         }
       }
@@ -113,6 +115,7 @@ const TeamBestPricingStyleWrapper = styled.section`
       flex-direction: column;
       justify-content: flex-start;
       flex-shrink: 0;
+      text-align: center;
     }
     
     &.meeting {
@@ -153,24 +156,31 @@ const TeamBestPricingStyleWrapper = styled.section`
 
     &-header {
       p {
-        margin-bottom: 25px;
+        margin-bottom: 15px;
         white-space: normal;
         word-break: break-word;
         overflow: visible;
         text-overflow: clip;
-        min-height: 50px;
-        max-height: 50px;
-        line-height: 1.6;
+        min-height: 40px;
+        max-height: 40px;
+        line-height: 1.4;
         color: ${({ theme }) => theme.colors.textColor};
+        font-size: 14px;
+        font-weight: 400;
       }
     }
     &-title {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       position: relative;
-      padding-right: 50px;
+      padding-right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
       h2 {
-        font-size: 22px;
-        line-height: 1.5;
+        font-size: 18px;
+        line-height: 1.4;
         white-space: normal;
         word-break: break-word;
         margin: 0;
@@ -178,11 +188,9 @@ const TeamBestPricingStyleWrapper = styled.section`
         height: auto;
       }
       img {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 40px;
-        height: 40px;
+        position: relative;
+        width: 35px;
+        height: 35px;
       }
     }
 
@@ -196,7 +204,7 @@ const TeamBestPricingStyleWrapper = styled.section`
         padding: 0;
         list-style: none;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         flex: 1;
         overflow-y: auto;
         padding-right: 8px;
@@ -225,6 +233,10 @@ const TeamBestPricingStyleWrapper = styled.section`
           padding-left: 16px;
           padding-bottom: 6px;
           position: relative;
+          line-height: 1.5;
+          word-wrap: break-word;
+          word-break: break-word;
+          font-weight: 400;
 
           &:not(:first-child) {
             margin-top: 10px;
@@ -233,13 +245,13 @@ const TeamBestPricingStyleWrapper = styled.section`
           &::before {
             position: absolute;
             content: "";
-            top: 42%;
+            top: 8px;
             left: 0;
-            transform: translateY(-50%);
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: #000000;
+            flex-shrink: 0;
           }
         }
       }
@@ -248,10 +260,10 @@ const TeamBestPricingStyleWrapper = styled.section`
     .buy-now-btn {
       width: 100%;
       padding: 12px 16px;
-      border: 2px solid #8b5cf6;
+      border: 2px solid #ff9a42;
       border-radius: 25px;
       background-color: transparent;
-      color: #8b5cf6;
+      color: #000000;
       font-weight: 600;
       font-size: 14px;
       cursor: pointer;
@@ -267,7 +279,7 @@ const TeamBestPricingStyleWrapper = styled.section`
         left: -100%;
         width: 100%;
         height: 100%;
-        background-color: #8b5cf6;
+        background-color: #ff9a42;
         transition: left 0.3s ease;
         z-index: -1;
       }

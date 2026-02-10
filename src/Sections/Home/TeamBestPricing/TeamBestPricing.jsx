@@ -32,10 +32,17 @@ const TeamBestPricing = () => {
           <div className="col-md-12">
             <ScrollAnimate delay={200}>
               <SectionTitle
-                title="Choose your best deal"
+                title="Choose the Right Service Based on Your Requirement"
                 subtitle="Our Pricing"
                 parentClass="text-center"
+                titleStyle={{
+                  fontSize: "32px",
+                  lineHeight: "45px"
+                }}
               />
+              <p style={{ fontSize: "16px", color: "#666666", marginTop: "-10px", marginBottom: "40px", textAlign: "center" }}>
+                Select the right plan that fits your business needs and compliance requirements
+              </p>
               {/* <div className="best-pricing-selector">
                 <form action="/" method="post">
                   <button
@@ -142,36 +149,55 @@ const TeamBestPricing = () => {
                         <div className="best-pricing-card-header">
                           <div className="best-pricing-card-title">
                             <h2>{plan.title}</h2>
-                            <img src={plan.icon} alt="pricing-icon" />
                           </div>
 
-                          <p>{plan.description}</p>
+                          <p style={{ textAlign: index < 3 ? "center" : "left" }}>
+                            {plan.subtitle || plan.description}
+                          </p>
 
-                          {isYearly ? (
-                            <h3>
-                              {plan.plans.yearly.price} <span>/year</span>
+                          {plan.id === "ITR Capital Gain(ESOP & RSU)" ? (
+                            <h3 style={{ fontWeight: 700, marginBottom: 0 }}>
+                              {plan.subtitle}
                             </h3>
                           ) : (
-                            <h3>
-                              {plan.plans.monthly.price} <span>/month</span>
-                            </h3>
+                            <>
+                              <h3 style={{ fontWeight: 700, marginBottom: "2px", fontSize: "22px" }}>
+                                Starting from
+                              </h3>
+                              {isYearly ? (
+                                <h3>
+                                  {plan.plans.yearly.price} <span>/year</span>
+                                </h3>
+                              ) : (
+                                <h3>
+                                  {plan.plans.monthly.price} <span>/month</span>
+                                </h3>
+                              )}
+                            </>
                           )}
                         </div>
                         <div className="best-pricing-card-body">
+                          {(index === 1 || index === 2) && plan.noteText && (
+                            <p style={{ fontSize: "11px", color: "#999999", marginBottom: "8px", marginTop: "-15px", textAlign: "center", whiteSpace: "nowrap" }}>
+                              {plan.noteText}
+                            </p>
+                          )}
                           {isYearly ? (
-                            <ul className="list">
+                            <ul className="list" style={{ marginTop: (index === 1 || index === 2) ? "0px" : "20px" }}>
                               {plan.plans.yearly.features.map((feature, i) => (
                                 <li key={i}>{feature}</li>
                               ))}
                             </ul>
                           ) : (
-                            <ul className="list">
+                            <ul className="list" style={{ marginTop: (index === 1 || index === 2) ? "0px" : "20px" }}>
                               {plan.plans.monthly.features.map((feature, i) => (
                                 <li key={i}>{feature}</li>
                               ))}
                             </ul>
                           )}
-                          <button className="buy-now-btn">Buy Now</button>
+                          <button className="buy-now-btn">
+                            {index === 0 ? "Get Started" : index === 1 ? "View Services" : index === 2 ? "View Services" : "Talk to an Expert"}
+                          </button>
                         </div>
                       </div>
                     )}

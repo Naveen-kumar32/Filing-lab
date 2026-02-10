@@ -47,8 +47,8 @@ const FinanceLetsTalk = () => {
               <div className="col-md-6">
                 <div className="lets-talk-text">
                   <h2>
-                    We are building <br />
-                    financial foundations
+                    We simplify your <br />
+                    compliance journey
                   </h2>
                   <NavLink to={"/contact-us"} className="lets-talk-btn">
                     Let’s Talk

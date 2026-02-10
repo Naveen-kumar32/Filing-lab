@@ -51,8 +51,8 @@ const BestService = () => {
               <div className="best-services-left">
                 <ScrollAnimate delay={200}>
                 <SectionTitle
-                  title="We Provide"
-                  subtitle="Service Areas"
+                  title="Service Areas"
+                  subtitle="What We Do"
                   parentClass="corporate mb-2 md-mb-0"
                   titleClass="mb-0"
                 />

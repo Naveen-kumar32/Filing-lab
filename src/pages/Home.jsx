@@ -3,11 +3,12 @@ import HomeBanner from "../Sections/Banner/HomeBanner/HomeBanner";
 import ChatbotBanner from "../Sections/Banner/ChatbotBanner/ChatbotBanner";
 import Header from "../Sections/Header/Header";
 import BrandSlider from "../Components/BrandSlider/BrandSlider";
-import BusinessChoose from "../Sections/Home/BusinessChoose/BusinessChoose";
+import UsefulFeature from "../Sections/Home/UsefulFeature/UsefulFeature";
 import TeamBestPricing from "../Sections/Home/TeamBestPricing/TeamBestPricing";
-import FinanceLetsTalk from "../Sections/Finance/FinanceLetsTalk/FinanceLetsTalk";
+import BusinessChoose from "../Sections/Home/BusinessChoose/BusinessChoose";
+import FinanceLetsTalk from "../Sections/Home/FinanceLetsTalk/FinanceLetsTalk";
 import BusinessTestimonials from "../Sections/Home/BusinessTestimonials/BusinessTestimonials";
-import PowerfullTemplate from "../Sections/SassLanding/PowerfullTemplate/PowerfullTemplate";
+import PowerfullTemplate from "../Sections/Home/PowerfullTemplate/PowerfullTemplate";
 import HomeOneFeatures from "../Sections/Home/Features/HomeOneFeatures";
 import UsabilitySlider from "../Sections/Home/UsabilitySlider/UsabilitySlider";
 import BestService from "../Sections/Home/BestService/BestService";
@@ -29,11 +30,12 @@ const Home = () => {
         <ChatbotBanner />
         {/* <HomeBanner /> */}
         <BrandSlider titleClass={"brands-section-title"} />
-        <BestService />
+        {/* <BestService /> */}
+        <UsefulFeature />
         <BusinessChoose />
         <PowerfullTemplate />
         <TeamBestPricing />
-        <FinanceLetsTalk />
+        <FinanceLetsTalk /> 
         <ParallaxComponent parallaxTextClass="v6" />
         
         <BusinessTestimonials />

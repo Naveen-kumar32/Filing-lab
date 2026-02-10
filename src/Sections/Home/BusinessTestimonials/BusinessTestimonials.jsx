@@ -11,7 +11,7 @@ const BusinessTestimonials = () => {
           <div className="col-md-12">
             <ScrollAnimate delay={200}>
               <SectionTitle
-                title="We❤️Feedback"
+                title="What Our Clients Say"
                 subtitle="Testimonials"
                 alignment="center"
                 parentClass="testimonial-title4"
@@ -40,9 +40,9 @@ const BusinessTestimonials = () => {
                       <h4>{item.author}</h4>
                       <h5>{item.position}</h5>
                     </div>
-                    <div className="slider-info-icon">
+                    {/* <div className="slider-info-icon">
                       <img src={item.icon} alt="icon" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}
@@ -64,9 +64,9 @@ const BusinessTestimonials = () => {
                       <h4>{item.author}</h4>
                       <h5>{item.position}</h5>
                     </div>
-                    <div className="slider-info-icon">
+                    {/* <div className="slider-info-icon">
                       <img src={item.icon} alt="icon" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}

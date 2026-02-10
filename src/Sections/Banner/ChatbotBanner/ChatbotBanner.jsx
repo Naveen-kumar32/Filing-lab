@@ -11,30 +11,58 @@ import { useState, useEffect } from "react";
 
 
 const services = [
-  "Company Registrations",
-  "GST Filing",
-  "FSSAI License",
+  "Startup Registration",
+  "Private Limited Company Registration",
   "LLP Registration",
-  "TDS Return Filing",
+  "GST Registration",
+  "Startup India Registration",
+  "Compliance for Startups",
 ];
 
 
 
-const ChatbotBanner = () => {
+const  ChatbotBanner = () => {
   
   const [visibleIndex, setVisibleIndex] = useState(0);
-
   const [index, setIndex] = useState(0);
+  const [searchText, setSearchText] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
 
   const headlines = ["Complaince", "Filings", "Regulatory Support"];
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setIndex((prev) => (prev + 1) % services.length);
-  //   }, 2000); // change text every 2 seconds
+  // Handle typing animation
+  useEffect(() => {
+    const currentService = services[index];
+    let currentCharIndex = 0;
 
-  //   return () => clearInterval(interval);
-  // }, []);
+    if (isTyping) {
+      const typingInterval = setInterval(() => {
+        if (currentCharIndex < currentService.length) {
+          setDisplayedText(currentService.substring(0, currentCharIndex + 1));
+          currentCharIndex++;
+        } else {
+          setIsTyping(false);
+          clearInterval(typingInterval);
+        }
+      }, 60); // typing speed
+
+      return () => clearInterval(typingInterval);
+    }
+  }, [index, isTyping]);
+
+  // Change to next service after showing current one
+  useEffect(() => {
+    if (!isTyping) {
+      const delayBeforeNext = setTimeout(() => {
+        setIndex((prev) => (prev + 1) % services.length);
+        setDisplayedText("");
+        setIsTyping(true);
+      }, 1500); // delay before typing next text
+
+      return () => clearTimeout(delayBeforeNext);
+    }
+  }, [isTyping]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,6 +71,10 @@ const ChatbotBanner = () => {
 
     return () => clearInterval(interval);
   }, [visibleIndex]);
+
+  const handleSearch = () => {
+    console.log("Search for:", searchText);
+  };
 
   return (
     <ChatbotBannerStyle className="v8banner-section chatbot-banner">
@@ -101,13 +133,14 @@ const ChatbotBanner = () => {
 
 
               {/* Search Bar */}
-              <div className="search-box">
+             <div className="search-box">
                 <input
                   type="text"
-                  value={services[index]}
-                  readOnly
+                  placeholder={displayedText}
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
                 />
-                <button>Search</button>
+                <button onClick={handleSearch}>Search</button>
               </div>
             {/* <form className="start-free-form">
               <input
@@ -121,20 +154,18 @@ const ChatbotBanner = () => {
                 defaultValue="Start for free"
               />
             </form> */}
-            <ul className="hero-content-list">
-              <li>
-                <div className="list-item">
-                  <span className="iconify" data-icon="bi:check-lg" />
-                  <p>Free 14-day trial</p>
-                </div>
-              </li>
-              <li>
-                <div className="list-item">
-                  <span className="iconify" data-icon="bi:check-lg" />
-                  <p>No credit card required</p>
-                </div>
-              </li>
-            </ul>
+            {/* Recommended Services */}
+            <div className="recommended-services">
+              <h3 className="services-title">Recommended Services</h3>
+              <div className="services-grid">
+                <a href="#" className="service-button">Income Tax Filing</a>
+                <a href="#" className="service-button">Company Registration</a>
+                <a href="#" className="service-button">GST Registration</a>
+                <a href="#" className="service-button">Accounting & Bookkeeping</a>
+                <a href="#" className="service-button">GST Return Filing</a>
+                <a href="#" className="service-button">Business Compliance</a>
+              </div>
+            </div>
           </div>
         </ScrollAnimate>
       </div>

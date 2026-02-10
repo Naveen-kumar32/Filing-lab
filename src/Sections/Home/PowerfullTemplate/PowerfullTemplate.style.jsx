@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const PowerfullTemplateStyle = styled.section`
   margin-bottom: 140px;
+  margin-top: 80px;
   overflow-y: hidden;
   background: ${({ theme }) => theme.colors.whiteColor};
   position: relative;
@@ -41,7 +42,7 @@ const PowerfullTemplateStyle = styled.section`
       height: 60px;
       width: 60px;
       border: 10px solid ${({ theme }) => theme.colors.whiteColor};
-      background: #e6e6e6;
+      background: #ff9a42;
       color: ${({ theme }) => theme.colors.title};
       font-family: ${({ theme }) => theme.fonts.PlusJakartaSans};
       font-weight: 700;
@@ -52,7 +53,7 @@ const PowerfullTemplateStyle = styled.section`
       transition: 0.3s;
       &.active{
         color: ${({ theme }) => theme.colors.whiteColor};
-        background: ${({ theme }) => theme.colors.primary};
+        background: #ff9a42;
       }
     }
     &::before {
@@ -66,7 +67,7 @@ const PowerfullTemplateStyle = styled.section`
     }
     &::after {
       content: "";
-      background: ${({ theme }) => theme.colors.primary};
+      background: #ff9a42;
       height: 0%;
       width: 2px;
       top: 50px;
@@ -97,7 +98,7 @@ const PowerfullTemplateStyle = styled.section`
     .timeline-progress {
       width: 2px;
       height: 50px;
-      background-color: ${({ theme }) => theme.colors.primary};
+      background-color: #ff9a42;
     }
   }
   .powerfull-template-text {
