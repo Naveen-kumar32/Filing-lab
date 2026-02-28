@@ -39,6 +39,7 @@ const TeamBestPricing = () => {
                   fontSize: "32px",
                   lineHeight: "45px"
                 }}
+                subtitleStyle={{ color: "#000000" }}
               />
               <p style={{ fontSize: "16px", color: "#666666", marginTop: "-10px", marginBottom: "40px", textAlign: "center" }}>
                 Select the right plan that fits your business needs and compliance requirements

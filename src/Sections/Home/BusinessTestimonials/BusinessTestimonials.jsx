@@ -15,6 +15,7 @@ const BusinessTestimonials = () => {
                 subtitle="Testimonials"
                 alignment="center"
                 parentClass="testimonial-title4"
+                subtitleStyle={{ color: "#000000" }}
               />
             </ScrollAnimate>
           </div>
