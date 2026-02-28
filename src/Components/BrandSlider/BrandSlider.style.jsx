@@ -478,4 +478,3 @@ const BrandSliderStyleWrapper = styled.section`
 `;
 
 export default BrandSliderStyleWrapper;
-

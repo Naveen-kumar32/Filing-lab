@@ -61,4 +61,3 @@ const BrandSlider = ({ titleClass, sliderClass }) => {
 };
 
 export default BrandSlider;
-

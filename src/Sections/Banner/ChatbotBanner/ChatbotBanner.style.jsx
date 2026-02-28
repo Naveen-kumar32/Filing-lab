@@ -237,7 +237,7 @@ const ChatbotBannerStyle = styled.section`
   outline: none;
   padding: 0;
   font-size: 14px;
-  color: #0b2a4a;
+  color: #ffffff;
   background: transparent;
   transition: all 0.8s ease;
   height: 100%;

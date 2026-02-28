@@ -82,9 +82,9 @@ const TeamBestPricing = () => {
             <div className="col-md-12">
               <div className="best-pricing-grid">
                 {pricingPlans?.map((plan, index) => (
-                  <>
+                  <div key={index}>
                     {plan.id === "custom" ? (
-                      <div key={index} className={`best-pricing-card v2`}>
+                      <div className={`best-pricing-card v2`}>
                         <div className="best-pricing-card-header">
                           <div className="best-pricing-card-title">
                             <h2>{plan.title}</h2>
@@ -201,7 +201,7 @@ const TeamBestPricing = () => {
                         </div>
                       </div>
                     )}
-                  </>
+                  </div>
                 ))}
               </div>
             </div>

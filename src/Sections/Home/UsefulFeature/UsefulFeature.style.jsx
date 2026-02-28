@@ -6,10 +6,11 @@ const UsefulFeatureStyleWrapper = styled.section`
     .useful-feature-header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         gap: 40px;
         flex-wrap: wrap;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+        text-align: center;
     }
 
     .useful-feature-slider-nav {
@@ -39,6 +40,8 @@ const UsefulFeatureStyleWrapper = styled.section`
             width: 100% !important;
             transform: translate3d(0px, 0px, 0px) !important;
             margin: 0 -10px;
+            display: flex !important;
+            justify-content: center;
         }
 
         .slider-item {
@@ -119,10 +122,15 @@ const UsefulFeatureStyleWrapper = styled.section`
 
             h3 {
                 margin: 0;
-                font-size: 18px;
+                font-size: 15px;
                 font-weight: 700;
                 color: ${({ theme }) => theme.colors.blackColor};
-                line-height: 24px;
+                line-height: 22px;
+                height: 44px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
             }
         }
 
@@ -182,7 +190,9 @@ const UsefulFeatureStyleWrapper = styled.section`
                 }
 
                 h3 {
-                    font-size: 16px;
+                    font-size: 14px;
+                    line-height: 20px;
+                    height: 40px;
                 }
             }
         }
@@ -194,7 +204,9 @@ const UsefulFeatureStyleWrapper = styled.section`
 
             .feature-box-header {
                 h3 {
-                    font-size: 14px;
+                    font-size: 13px;
+                    line-height: 19px;
+                    height: 38px;
                 }
             }
 

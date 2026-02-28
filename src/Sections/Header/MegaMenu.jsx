@@ -38,60 +38,45 @@ const MegaMenu = ({ megaMenuClass, activeKey }) => {
 
   useEffect(() => {
     const newData = dataMap[activeKey] || [];
-    setActiveTitle(null);
+    setActiveTitle(newData[0] || null);
   }, [activeKey]);
 
   return (
     <MegaMenuWrapper>
       <div className="mega-menu">
-        <div className={`mega-menu-card ${megaMenuClass}`} style={{ display: "flex", width: "100%" }}>
-          
-          {/* Left menu section */}
-          <div className="mega-menu-left" style={{ width: "25%", borderRight: "1px solid #ccc", paddingRight: "10px" }}>
+        <div className="mega-menu-card">
+
+          {/* Col 1 - Left titles */}
+          <div className="mega-menu-left">
             {(dataMap[activeKey] || []).map((item, idx) => (
               <div
                 key={idx}
                 className={`menu-title-item ${activeTitle?.Maintitle === item.Maintitle ? "active" : ""}`}
+                onMouseEnter={() => setActiveTitle(item)}
                 onClick={() => setActiveTitle(item)}
-                style={{
-                  padding: "10px",
-                  cursor: "pointer",
-                  backgroundColor: activeTitle?.Maintitle === item.Maintitle ? "#ddd" : "transparent"
-                }}
               >
                 {item.Maintitle.trim() || "More"}
               </div>
             ))}
           </div>
 
-          {/* Right menu section - Only show if activeTitle is selected */}
-          {activeTitle && (
-            <div className="mega-menu-right" style={{ width: "75%", display: "flex", flexDirection: "row" }}>
-              <div className="mega-menu-column">
-                {chunkArray(activeTitle.menuList?.slice(0, Math.ceil((activeTitle.menuList?.length || 0) / 2)), 6).map((chunk, i) => (
-                  <ul key={i} className="mega-menu-list">
-                    {chunk.map((menuItem, mid) => (
-                      <li key={mid}>
-                        <NavLink to={menuItem.url}>{menuItem.title}</NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-
-              <div className="mega-menu-column">
-                {chunkArray(activeTitle.menuList?.slice(Math.ceil((activeTitle.menuList?.length || 0) / 2)), 6).map((chunk, i) => (
-                  <ul key={i} className="mega-menu-list">
-                    {chunk.map((menuItem, mid) => (
-                      <li key={mid}>
-                        <NavLink to={menuItem.url}>{menuItem.title}</NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
+          {/* Col 2 & 3 - Right two list columns, always rendered */}
+          <div className="mega-menu-right">
+            <div className="mega-menu-column">
+              {activeTitle?.menuList?.slice(0, Math.ceil((activeTitle.menuList?.length || 0) / 2)).map((menuItem, mid) => (
+                <div key={mid} className="mega-menu-list" style={{ marginBottom: '15px' }}>
+                  <NavLink to={menuItem.url} data-text={menuItem.title} style={{ padding: '2px 8px', lineHeight: '1.3' }}>{menuItem.title}</NavLink>
+                </div>
+              ))}
             </div>
-          )}
+            <div className="mega-menu-column">
+              {activeTitle?.menuList?.slice(Math.ceil((activeTitle.menuList?.length || 0) / 2)).map((menuItem, mid) => (
+                <div key={mid} className="mega-menu-list" style={{ marginBottom: '15px' }}>
+                  <NavLink to={menuItem.url} data-text={menuItem.title} style={{ padding: '2px 8px', lineHeight: '1.3' }}>{menuItem.title}</NavLink>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </MegaMenuWrapper>

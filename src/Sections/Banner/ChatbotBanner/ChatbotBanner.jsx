@@ -29,7 +29,7 @@ const  ChatbotBanner = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
 
-  const headlines = ["Complaince", "Filings", "Regulatory Support"];
+  const headlines = ["Filings", "Compliance", "Support"];
 
   // Handle typing animation
   useEffect(() => {

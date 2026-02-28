@@ -811,7 +811,7 @@
 }
 .consultation-btn {
   padding: 12px 39px;
-  background: linear-gradient(90deg, #30d7f1 0%, #79fa4b 100%);
+  background: linear-gradient(90deg, #ff6600 0%, #ff9a42 100%);
   border-radius: 50px;
   max-width: 250px;
   width: 100%;
@@ -820,7 +820,7 @@
   align-items: center;
   justify-content: center;
   text-transform: capitalize;
-  color: #111111 !important;
+  color: #ffffff !important;
   transition: 0.3s;
   position: relative;
   overflow: hidden;
@@ -846,7 +846,7 @@
   opacity: 0;
 }
 .consultation-btn span {
-  color: #111111;
+  color: #ffffff;
 }
 .consultation-btn:hover .btn-inner,
 .consultation-btn:focus .btn-inner {
@@ -1403,7 +1403,7 @@
 .lets-talk-btn {
   width: 170px;
   height: 60px;
-  background: #b2eda1;
+  background: #ffe0c2;
   border-radius: 100px;
   display: flex;
   align-items: center;
@@ -1421,7 +1421,7 @@
 }
 .lets-talk-btn:hover,
 .lets-talk-btn:focus {
-  background: #44c486;
+  background: #ff6600;
   color: #ffffff !important;
 }
 .lets-talk-btn:hover img,

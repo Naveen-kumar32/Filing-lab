@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import Slider from "react-slick";
 import UsefulFeatureStyleWrapper from "./UsefulFeature.style";
-import TitleStyleWrapper from "../../../Components/Title/Title.style";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 
 import usefulFeatureIcon from "../../../assets/images/icons/useful-feature-icon.svg";
 import ScrollAnimate from "../../../Components/ScrollAnimate";
@@ -90,17 +90,16 @@ const UsefulFeature = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <div className="useful-feature-header">
+            <div className="useful-feature-header" style={{ justifyContent: "center", textAlign: "center" }}>
               <ScrollAnimate delay={200}>
-                <TitleStyleWrapper>
-                  <div className="section-title mb-0">
-                    <span className="sub-title" style={{color:"#000000",}}>What We Do</span>
-                    <h2 className="title mb-0">
-                      Service {" "}
-                      <span className="marketing-badge">Areas </span>
-                    </h2>
-                  </div>
-                </TitleStyleWrapper>
+                <SectionTitle
+                  title="Service Areas"
+                  subtitle="What We Do"
+                  parentClass="text-center mb-0"
+                  titleClass="mb-0"
+                  titleStyle={{ fontSize: "32px" }}
+                  subtitleStyle={{ color: "#000000" }}
+                />
               </ScrollAnimate>
               {/* <div className="useful-feature-header-right">
                 <ScrollAnimate delay={220}>
@@ -163,20 +162,6 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={llpIcon} alt="icon" className="feature-icon" />
-                          <h3>LLP Registration</h3>
-                        </div>
-                        <p className="feature-description">
-                          Assistance for LLP registration with flexible structure and limited liability.
-                        </p>
-                        <a href="#" className="feature-link">
-                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12">
-                      <div className="feature-box">
-                        <div className="feature-box-header">
                           <img src={publicCompanyIcon} alt="icon" className="feature-icon" />
                           <h3>Public Limited Company Registration</h3>
                         </div>
@@ -191,11 +176,11 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={partnershipIcon} alt="icon" className="feature-icon" />
-                          <h3>Partnership Firm Registration</h3>
+                          <img src={opcIcon} alt="icon" className="feature-icon" />
+                          <h3>One Person Company (OPC) Registration</h3>
                         </div>
                         <p className="feature-description">
-                          Support for partnership firm registration with clear agreements and compliance.
+                          Registration support for single-owner companies with structured compliance framework.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -205,11 +190,25 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={opcIcon} alt="icon" className="feature-icon" />
-                          <h3>One Person Company (OPC) Registration</h3>
+                          <img src={llpIcon} alt="icon" className="feature-icon" />
+                          <h3>LLP Registration</h3>
                         </div>
                         <p className="feature-description">
-                          Registration support for single-owner companies with structured compliance framework.
+                          Assistance for LLP registration with flexible structure and limited liability.
+                        </p>
+                        <a href="#" className="feature-link">
+                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <div className="feature-box">
+                        <div className="feature-box-header">
+                          <img src={partnershipIcon} alt="icon" className="feature-icon" />
+                          <h3>Partnership Firm Registration</h3>
+                        </div>
+                        <p className="feature-description">
+                          Support for partnership firm registration with clear agreements and compliance.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -253,20 +252,6 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={shopsIcon} alt="icon" className="feature-icon" />
-                          <h3>Shops & Establishment Registration</h3>
-                        </div>
-                        <p className="feature-description">
-                          Registration services to comply with local shops and establishment laws.
-                        </p>
-                        <a href="#" className="feature-link">
-                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12">
-                      <div className="feature-box">
-                        <div className="feature-box-header">
                           <img src={msmeIcon} alt="icon" className="feature-icon" />
                           <h3>MSME / Udyam Registration</h3>
                         </div>
@@ -281,11 +266,11 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={iecIcon} alt="icon" className="feature-icon" />
-                          <h3>Import Export Code (IEC) Registration</h3>
+                          <img src={profTaxIcon} alt="icon" className="feature-icon" />
+                          <h3>Professional Tax Registration</h3>
                         </div>
                         <p className="feature-description">
-                          Assistance for obtaining IEC to start import export operations.
+                          Support for professional tax registration and state-level statutory compliance.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -295,11 +280,25 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={profTaxIcon} alt="icon" className="feature-icon" />
-                          <h3>Professional Tax Registration</h3>
+                          <img src={shopsIcon} alt="icon" className="feature-icon" />
+                          <h3>Shops & Establishment Registration</h3>
                         </div>
                         <p className="feature-description">
-                          Support for professional tax registration and state-level statutory compliance.
+                          Registration services to comply with local shops and establishment laws.
+                        </p>
+                        <a href="#" className="feature-link">
+                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <div className="feature-box">
+                        <div className="feature-box-header">
+                          <img src={iecIcon} alt="icon" className="feature-icon" />
+                          <h3>Import Export Code (IEC) Registration</h3>
+                        </div>
+                        <p className="feature-description">
+                          Assistance for obtaining IEC to start import export operations.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -343,20 +342,6 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={taxPlanIcon} alt="icon" className="feature-icon" />
-                          <h3>Tax Planning & Advisory</h3>
-                        </div>
-                        <p className="feature-description">
-                          Strategic tax planning to optimise liabilities and ensure compliance.
-                        </p>
-                        <a href="#" className="feature-link">
-                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12">
-                      <div className="feature-box">
-                        <div className="feature-box-header">
                           <img src={gstReturnIcon} alt="icon" className="feature-icon" />
                           <h3>GST Return Filing</h3>
                         </div>
@@ -371,11 +356,11 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={taxNoticeIcon} alt="icon" className="feature-icon" />
-                          <h3>Tax Notice Handling</h3>
+                          <img src={tdsIcon} alt="icon" className="feature-icon" />
+                          <h3>TDS Return Filing</h3>
                         </div>
                         <p className="feature-description">
-                          Assistance in responding to income tax and GST notices.
+                          Professional support for filing TDS returns accurately and on time.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -385,11 +370,25 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={tdsIcon} alt="icon" className="feature-icon" />
-                          <h3>TDS Return Filing</h3>
+                          <img src={taxPlanIcon} alt="icon" className="feature-icon" />
+                          <h3>Tax Planning & Advisory</h3>
                         </div>
                         <p className="feature-description">
-                          Professional support for filing TDS returns accurately and on time.
+                          Strategic tax planning to optimise liabilities and ensure compliance.
+                        </p>
+                        <a href="#" className="feature-link">
+                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <div className="feature-box">
+                        <div className="feature-box-header">
+                          <img src={taxNoticeIcon} alt="icon" className="feature-icon" />
+                          <h3>Tax Notice Handling</h3>
+                        </div>
+                        <p className="feature-description">
+                          Assistance in responding to income tax and GST notices.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -433,20 +432,6 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={statutoryIcon} alt="icon" className="feature-icon" />
-                          <h3>Statutory Filings</h3>
-                        </div>
-                        <p className="feature-description">
-                          Timely statutory filings to meet regulatory requirements across authorities.
-                        </p>
-                        <a href="#" className="feature-link">
-                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12">
-                      <div className="feature-box">
-                        <div className="feature-box-header">
                           <img src={gstCompIcon} alt="icon" className="feature-icon" />
                           <h3>GST Compliance</h3>
                         </div>
@@ -461,11 +446,11 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={healthCheckIcon} alt="icon" className="feature-icon" />
-                          <h3>Compliance Health Check</h3>
+                          <img src={labourIcon} alt="icon" className="feature-icon" />
+                          <h3>Labour Law Compliance</h3>
                         </div>
                         <p className="feature-description">
-                          Periodic review to identify gaps and ensure full compliance readiness.
+                          Compliance support for labour laws including registrations and periodic filings.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -475,11 +460,25 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={labourIcon} alt="icon" className="feature-icon" />
-                          <h3>Labour Law Compliance</h3>
+                          <img src={statutoryIcon} alt="icon" className="feature-icon" />
+                          <h3>Statutory Filings</h3>
                         </div>
                         <p className="feature-description">
-                          Compliance support for labour laws including registrations and periodic filings.
+                          Timely statutory filings to meet regulatory requirements across authorities.
+                        </p>
+                        <a href="#" className="feature-link">
+                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <div className="feature-box">
+                        <div className="feature-box-header">
+                          <img src={healthCheckIcon} alt="icon" className="feature-icon" />
+                          <h3>Compliance Health Check</h3>
+                        </div>
+                        <p className="feature-description">
+                          Periodic review to identify gaps and ensure full compliance readiness.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -523,20 +522,6 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={misIcon} alt="icon" className="feature-icon" />
-                          <h3>MIS & Financial Reporting</h3>
-                        </div>
-                        <p className="feature-description">
-                          Periodic MIS and financial reports to support informed business decisions.
-                        </p>
-                        <a href="#" className="feature-link">
-                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12">
-                      <div className="feature-box">
-                        <div className="feature-box-header">
                           <img src={bookkeeperIcon} alt="icon" className="feature-icon" />
                           <h3>Bookkeeping Services</h3>
                         </div>
@@ -551,11 +536,11 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={cfoIcon} alt="icon" className="feature-icon" />
-                          <h3>Virtual CFO Services</h3>
+                          <img src={payrollIcon} alt="icon" className="feature-icon" />
+                          <h3>Payroll Management</h3>
                         </div>
                         <p className="feature-description">
-                          Strategic financial oversight and guidance without hiring a full-time CFO.
+                          End-to-end payroll processing ensuring timely salaries and statutory compliance.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />
@@ -565,11 +550,25 @@ const UsefulFeature = () => {
                     <div className="col-lg-4 col-md-6 col-sm-12">
                       <div className="feature-box">
                         <div className="feature-box-header">
-                          <img src={payrollIcon} alt="icon" className="feature-icon" />
-                          <h3>Payroll Management</h3>
+                          <img src={misIcon} alt="icon" className="feature-icon" />
+                          <h3>MIS & Financial Reporting</h3>
                         </div>
                         <p className="feature-description">
-                          End-to-end payroll processing ensuring timely salaries and statutory compliance.
+                          Periodic MIS and financial reports to support informed business decisions.
+                        </p>
+                        <a href="#" className="feature-link">
+                          Get Started <span className="iconify" data-icon="bi:arrow-right" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <div className="feature-box">
+                        <div className="feature-box-header">
+                          <img src={cfoIcon} alt="icon" className="feature-icon" />
+                          <h3>Virtual CFO Services</h3>
+                        </div>
+                        <p className="feature-description">
+                          Strategic financial oversight and guidance without hiring a full-time CFO.
                         </p>
                         <a href="#" className="feature-link">
                           Get Started <span className="iconify" data-icon="bi:arrow-right" />

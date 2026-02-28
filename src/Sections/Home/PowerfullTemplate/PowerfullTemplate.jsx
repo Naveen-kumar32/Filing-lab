@@ -1,91 +1,231 @@
 import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 import TitleStyleWrapper from "./../../../Components/Title/Title.style";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import PowerfullTemplateStyle from "./PowerfullTemplate.style";
 
-import templateImg1 from "../../../assets/images/how-It-works/1.svg";
-import templateImg2 from "../../../assets/images/how-It-works/2.svg";
-import templateImg3 from "../../../assets/images/how-It-works/3.svg";
+import templateImg1 from "../../../assets/images/animic/1.png";
+import templateImg2 from "../../../assets/images/animic/2.png";
+import templateImg3 from "../../../assets/images/animic/3.png";
+import templateImg4 from "../../../assets/images/animic/4.png";
 import monitorIcon from "../../../assets/images/icons/monitor_icon.svg";
 import messageIcon from "../../../assets/images/icons/message_icon.svg";
 import documentIcon from "../../../assets/images/icons/document_icon.svg";
 import ScrollAnimate from "../../../Components/ScrollAnimate";
+import Consultation from "../Consultation/Consultation";
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+const ModalContent = styled.div`
+  border-radius: 12px;
+  overflow: hidden;
+  width: 650px;
+  height: 500px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  @keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  /* Every wrapper must stretch to fill 620×620 */
+  .consultation-section,
+  .consultation-section > .container,
+  .consultation-section > .container > div,   /* ScrollAnimate outer div */
+  .consultation-card {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    border-radius: 0 !important;
+  }
+
+  .row {
+    flex: 1 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    height: 100% !important;
+  }
+
+  .col-md-6 {
+    padding: 0 !important;
+    flex: 1 !important;
+    max-width: 50% !important;
+    width: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Left green panel */
+  .consultation-left {
+    flex: 1 !important;
+    padding: 32px 26px !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  /* ScrollAnimate div inside left col */
+  .consultation-left > div,
+  .col-md-6 > div {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .consultation-img {
+    margin-bottom: 12px !important;
+    img { max-width: 60px !important; }
+  }
+
+  .consultation-text {
+    p, h5 { margin-bottom: 4px !important; font-size: 13px !important; }
+  }
+
+  /* Right white form panel */
+  .consultation-form {
+    flex: 1 !important;
+    padding: 28px 26px 32px !important;
+    background: #fff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding-top: 18px !important;
+    form {
+      width: 100% !important;
+      label {
+        font-size: 12px !important;
+        line-height: 18px !important;
+        margin-bottom: 2px !important;
+      }
+      input {
+        height: 36px !important;
+        font-size: 12px !important;
+        margin-bottom: 10px !important;
+        padding: 6px 12px !important;
+      }
+    }
+  }
+
+  .consultation-dropdown {
+    &::after { top: 10px !important; }
+    select {
+      height: 36px !important;
+      font-size: 12px !important;
+      margin-bottom: 16px !important;
+      padding: 6px 12px !important;
+    }
+  }
+
+  .phone-input-group {
+    margin-bottom: 10px !important;
+  }
+
+  .consultation-form-title {
+    position: relative !important;
+    top: -20px !important;
+    margin-bottom: -4px !important;
+    font-size: 13px !important;
+    max-width: 280px !important;
+  }
+
+  .consultation-btn {
+    padding: 8px 20px !important;
+    font-size: 13px !important;
+  }
+`;
 
 function PowerfullTemplate() {
-  const [activeNumber, setActiveNumber] = useState(0);
   const powerfullTemplateContentRef = useRef(null);
-  const timelineProgressRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    subject: "",
+  });
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    setShowModal(false);
+    setFormData({ name: "", phone: "", subject: "" });
+  };
+
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleCloseModal();
+    }
+  }
+
   useEffect(() => {
-  const elements = document.querySelectorAll(".fade-left, .fade-right");
+    const elements = document.querySelectorAll(".fade-left, .fade-right");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Remove the class first to reset the animation
-          entry.target.classList.remove("fade-in");
-          // Trigger reflow to restart animation
-          void entry.target.offsetWidth;
-          // Add the class back to trigger animation
-          entry.target.classList.add("fade-in");
-        } else {
-          // Remove class when element is out of view so it animates again when it comes back
-          entry.target.classList.remove("fade-in");
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  elements.forEach((el) => observer.observe(el));
-
-  return () => observer.disconnect();
-}, []);
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      updateProgress();
-    };
-
-    const handleResize = () => {
-      updateProgress();
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-
-    updateProgress();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const updateProgress = () => {
-    const timelineProgress = timelineProgressRef.current;
-    const powerfullTemplateContent = powerfullTemplateContentRef.current;
-    const sectionTop = powerfullTemplateContent.getBoundingClientRect().top;
-    const sectionHeight = powerfullTemplateContent.clientHeight;
-    const windowHeight = window.innerHeight;
-
-    const progress = Math.max(
-      0,
-      Math.min(1, (windowHeight - sectionTop) / (sectionHeight + windowHeight))
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("fade-in");
+            void entry.target.offsetWidth;
+            entry.target.classList.add("fade-in");
+          } else {
+            entry.target.classList.remove("fade-in");
+          }
+        });
+      },
+      { threshold: 0.2 }
     );
 
-    timelineProgress.style.height = `${progress * 100}%`;
+    elements.forEach((el) => observer.observe(el));
 
-    // Update active number based on progress thresholds
-    if (progress >= 0 && progress < 0.33) {
-      setActiveNumber(1);
-    } else if (progress >= 0.33 && progress < 0.66) {
-      setActiveNumber(2);
-    } else if (progress >= 0.66) {
-      setActiveNumber(3);
-    }
-  };
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <PowerfullTemplateStyle className="powerfull-template-section">
@@ -107,7 +247,8 @@ function PowerfullTemplate() {
               }}
             />
             <h6 className="mb-0" style={{ marginTop: "12px" }}>
-Filing Lab makes tax, compliance, and business services easy through a guided, step-by-step process.            </h6>
+FilingLab makes compliance easy with a clear four-step process — submit your request, share details,
+make payment, and receive confirmation with ongoing support.</h6>
            </ScrollAnimate>
           </div>
         </TitleStyleWrapper>
@@ -117,154 +258,159 @@ Filing Lab makes tax, compliance, and business services easy through a guided, s
           className="powerfull-template-content"
           ref={powerfullTemplateContentRef}
         >
-          <div className="timeline-innerline">
-            <div className="timeline-progress" ref={timelineProgressRef}></div>
-          </div>
-
-          {/* Powerfull Template Rows */}
-          <div className="powerfull-template-row">
-          <div
-              className={`powerfull-template-number ${
-                activeNumber >= 1 ? "active" : ""
-              }`}
-            >
-              1
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <ScrollAnimate delay={200}>
-                <div className="powerfull-template-img powerfull-template-img-left fade-left">
-                  <img src={templateImg1} alt="img" />
-                </div>
-                </ScrollAnimate>
+          {/* Box 1 - Content Left, Image Right */}
+          <ScrollAnimate delay={200}>
+            <div className="template-card-wrapper fade-bottom">
+              <div className="circle-decoration">
+                <span>01</span>
               </div>
-              <div className="col-md-6">
-                <ScrollAnimate delay={300}>
-                <div className="powerfull-template-text powerfull-template-text-right fade-right">
-                  <h4>Share Your Requirement</h4>
-                  <p>
-                    Choose the service you need or submit
-your requirement online. Our team
-reviews your request and confirms the
-documents and process clearly.
-                  </p>
-                  <ul>
+              <div className="rectangle-decoration">
+                <h4>Choose your required service</h4>
+              </div>
+              
+              <div className="template-card">
+                <div className="card-left">
+                  <ul className="points-list">
                     <li>
-                      <span className="iconify" data-icon="bi:check-lg" />
-                      Select your required service
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
                     </li>
                     <li>
-                      <span className="iconify" data-icon="bi:check-lg" /> High
-Clear document checklist
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
                     </li>
                     <li>
-                      <span className="iconify" data-icon="bi:check-lg" /> No
-Quick confirmation from our team                    </li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
+                    </li>
                   </ul>
+                  <button className="cta-button" onClick={handleOpenModal}>Start Application</button>
                 </div>
-                </ScrollAnimate>
+                
+                <div className="card-right">
+                  <img src={templateImg1} alt="Filing Process" />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="powerfull-template-row">
-          <div
-              className={`powerfull-template-number ${
-                activeNumber >= 2 ? "active" : ""
-              }`}
-            >
-              2
-            </div>
-            <div className="row flex-row-reverse">
-              <div className="col-md-6">
-                <ScrollAnimate delay={300}>
-                <div className="powerfull-template-img powerfull-template-img-right fade-left">
-                  <img src={templateImg2} alt="img" />
-                </div>
-                </ScrollAnimate>
-              </div>
-              <div className="col-md-6">
-                <ScrollAnimate delay={200}>
-                <div className="powerfull-template-text powerfull-template-text-left fade-right">
-                  <h4>We Prepare and File Everything</h4>
-                 
-                  <p>
-                    Our experts prepare, review, and file all
-documents as per applicable laws. Every
-submission is checked carefully to ensure
-accuracy and timely compliance.
-                  </p>
-                  <ol>
-                    <li>
-                      <span>
-                        <img src={monitorIcon} alt="icon" />
-                      </span>
-Expert document preparation
-                    </li>
-                    <li>
-                      <span>
-                        <img src={messageIcon} alt="icon" />
-                      </span>
-                      Multi-level review process
-                    </li>
-                    <li>
-                      <span>
-                        <img src={documentIcon} alt="icon" />
-                      </span>
-Timely and accurate filings                    </li>
-                  </ol>
-                </div>
-                </ScrollAnimate>
-              </div>
-            </div>
-          </div>
-          <div className="powerfull-template-row">
-          <div
-              className={`powerfull-template-number ${
-                activeNumber >= 3 ? "active" : ""
-              }`}
-            >
-              3
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <ScrollAnimate delay={200}>
-                <div className="powerfull-template-img powerfull-template-img-left pb-0 fade-left">
-                  <img src={templateImg3} alt="img" />
-                </div>
-                </ScrollAnimate>
-              </div>
-              <div className="col-md-6">
-                <ScrollAnimate delay={300}>
-                <div className="powerfull-template-text powerfull-template-text-right fade-right">
-                  <h4>Receive Confirmation and Ongoing Support</h4>
-                  <p>
-                    You receive filing confirmations and
-updates once the process is completed. We
-continue to support you with renewals,
-compliance tracking, and future needs.
-                  </p>
-                  <ul>
-                    <li>
-                      <span className="iconify" data-icon="bi:check-lg" />
-Filing acknowledgements
+          </ScrollAnimate>
 
+          {/* Box 2 - Image Left, Content Right */}
+          <ScrollAnimate delay={200}>
+            <div className="template-card-wrapper reverse fade-bottom">
+              <div className="circle-decoration">
+                <span>02</span>
+              </div>
+              <div className="rectangle-decoration">
+                <h4>Share Business Details</h4>
+              </div>
+              
+              <div className="template-card">
+                <div className="card-left">
+                  <ul className="points-list">
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
                     </li>
                     <li>
-                      <span className="iconify" data-icon="bi:check-lg" /> High
-Compliance reminders
-
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
                     </li>
                     <li>
-                      <span className="iconify" data-icon="bi:check-lg" /> No
-Dedicated ongoing support</li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
+                    </li>
                   </ul>
+                  <button className="cta-button" onClick={handleOpenModal}>Submit Details</button>
                 </div>
-                </ScrollAnimate>
+
+                <div className="card-right">
+                  <img src={templateImg2} alt="Filing Process" />
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollAnimate>
+
+          {/* Box 3 - Content Left, Image Right */}
+          <ScrollAnimate delay={200}>
+            <div className="template-card-wrapper fade-bottom">
+              <div className="circle-decoration">
+                <span>03</span>
+              </div>
+              <div className="rectangle-decoration">
+                <h4>Secure Payment</h4>
+              </div>
+              
+              <div className="template-card">
+                <div className="card-left">
+                  <ul className="points-list">
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Review transparent service pricing
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Select your preferred payment method
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Complete payment through secure gateway
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Receive instant invoice and confirmation
+                    </li>
+                  </ul>
+                  <button className="cta-button" onClick={handleOpenModal}>Proceed to Payment</button>
+                </div>
+                
+                <div className="card-right">
+                  <img src={templateImg3} alt="Filing Process" />
+                </div>
+              </div>
+            </div>
+          </ScrollAnimate>
+
+          {/* Box 4 - Image Left, Content Right */}
+          <ScrollAnimate delay={200}>
+            <div className="template-card-wrapper reverse fade-bottom">
+              <div className="circle-decoration">
+                <span>04</span>
+              </div>
+              <div className="rectangle-decoration">
+                <h4>Confirmation & Support</h4>
+              </div>
+              
+              <div className="template-card">
+                <div className="card-left">
+                  <ul className="points-list">
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
+                    </li>
+                    <li>
+                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
+                    </li>
+                  </ul>
+                  <button className="cta-button" onClick={handleOpenModal}>Track Status</button>
+                </div>
+
+                <div className="card-right">
+                  <img src={templateImg4} alt="Filing Process" />
+                </div>
+              </div>
+            </div>
+          </ScrollAnimate>
         </div>
       </div>
+
+      {showModal && (
+        <ModalOverlay onClick={handleOverlayClick}>
+          <ModalContent>
+            <Consultation />
+          </ModalContent>
+        </ModalOverlay>
+      )}
     </PowerfullTemplateStyle>
   );
 }

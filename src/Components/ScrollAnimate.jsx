@@ -38,10 +38,7 @@ const ScrollAnimate = ({ children, delay = 0 }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.unobserve(entry.target);
-        }
+        setIsInView(entry.isIntersecting);
       },
       { threshold: 0.2 }
     );

@@ -50,6 +50,15 @@ export const testimonialData = [
         position: 'Individual Taxpayer',
         icon: icon1
     },
+    {
+        text1: 'Filing Lab provided excellent support for my personal income tax filing. The process was simple, transparent, and they ensured all deductions were properly documented.',
+        highlightClass: '',
+        highlightText: '',
+        text2: '',
+        author: 'Naveen Kumar K',
+        position: 'Individual Tax Payer',
+        icon: icon2
+    },
    
 ];
 
