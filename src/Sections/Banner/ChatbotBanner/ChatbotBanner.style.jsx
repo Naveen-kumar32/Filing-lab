@@ -6,6 +6,9 @@ const ChatbotBannerStyle = styled.section`
   background: #0d333f;
   padding-top: 90px;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   &.chatbot-banner {
     position: relative;
     z-index: 1;
@@ -15,7 +18,6 @@ const ChatbotBannerStyle = styled.section`
     background-size: cover;
     background-position: left center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
 
     .hero-content-list {
       display: flex;
@@ -43,7 +45,7 @@ const ChatbotBannerStyle = styled.section`
     .chatbot-banner-text {
       position: relative;
       z-index: 1;
-      min-height: 800px;
+      min-height: auto;
       .title {
         font-size: 48px;
         font-weight: 700;
@@ -133,346 +135,298 @@ const ChatbotBannerStyle = styled.section`
     }
   }
 
-  .banner-chat-section {
-    max-width: 460px;
-    width: 100%;
-    padding-top: 15px;
-    overflow: hidden;
-  }
-
-  .v8banner-text {
-    max-width: 607px;
-    padding-right: 49px;
-    min-height: 760px;
+  /* ═══════════════════════════════════════════════════════════════
+     MAIN FLEX ROW — left text | right video, always side by side
+     The section itself is full-width; the two halves split it 50/50.
+  ═══════════════════════════════════════════════════════════════ */
+  .banner-flex-row {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    .title {
-      line-height: 1.25;
-      color: ${({ theme }) => theme.colors.whiteColor};
-      margin-bottom: 18px;
-    }
-    p {
-      font-size: 18px;
-      line-height: 36px;
-      color: ${({ theme }) => theme.colors.whiteColor};
-      margin-bottom: 48px;
-    }
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
   }
 
-  .v8banner-video {
+  /* LEFT half — text content, starts from the true left edge */
+  .banner-left {
+    flex: 1 1 50%;
+    min-width: 0;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    width: 50%;
-    overflow: hidden;
+    /* Left padding = Bootstrap container margin so text lines up with rest of page */
+    // padding-left: clamp(20px, calc((100vw - 1210px) / 2), 320px);
+    padding-left: 60px;
+    padding-right: 48px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* RIGHT half — shrinks with screen width, video defines the height */
+  .banner-right {
+    flex: 1 1 50%;
+    min-width: 0;
+    position: relative;
+  }
+
+  .banner-bg-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: fill;
+  }
+
+  .chatbot-banner-video-overlay {
     position: absolute;
-    right: 0px;
-    top: 90px;
-    video {
-      width: 100%;
-      min-height: 760px;
-      object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(
+      90deg,
+      rgba(4, 23, 131, 0.85) 0%,
+      rgba(4, 23, 131, 0.3) 50%,
+      rgba(4, 23, 131, 0) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner-chat-section {
+    width: 100%;
+    padding: 15px;
+    overflow: hidden;
+  }
+
+  /* Text column content */
+  .v8banner-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &.chatbot-banner .chatbot-banner-text {
+    position: relative;
+    z-index: 1;
+    p {
+      margin-top: 8px;
+      color: #ffffff;
+    }
+    .title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 80px;
+      text-align: left;
+      color: #ffffff;
     }
   }
 
   /* TRUST POINTS */
-.trust-points {
-  margin-top: 10px;
-}
-
-.point {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #ffffff;
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-/* ARROW ANIMATION */
-.arrow-icon {
-  color: #ff7a00;
-  font-size: 22px;
-  animation: arrowBounce 1.2s infinite ease-in-out;
-}
-
-/* Slight delay for second arrow */
-.point:nth-child(2) .arrow-icon {
-  animation-delay: 0.2s;
-}
-
-@keyframes arrowBounce {
-  0% {
-    transform: translateX(0);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateX(8px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 0.6;
-  }
-}
-
-/* SEARCH BAR */
-.search-box {
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.31);
-  border-radius: 40px;
-  padding: 0 8px 0 20px;
-  width: 500px;
-  height: 55px;
-}
-
-.search-box input {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 0;
-  font-size: 14px;
-  color: #ffffff;
-  background: transparent;
-  transition: all 0.8s ease;
-  height: 100%;
-  text-align: left;
-}
-
-.search-box input::placeholder {
-  color: #ffffffff;
-}
-
-.search-box button {
-  background: #00a8e8;
-  color: white;
-  border: none;
-  padding: 10px 28px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: all 0.3s ease;
-  margin: 0;
-  height: 45px;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.search-box button:hover {
-  background: #0099d4;
-}
-
-/* RECOMMENDED SERVICES */
-.recommended-services {
-  margin-top: 40px;
-  max-width: 500px;
-}
-
-.services-title {
-  font-size: 13px;
-  font-weight: 500;
-  color: #ffffff;
-  margin-bottom: 8px;
-  text-align: left;
-}
-
-.services-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-}
-
-.service-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 12px;
-  background: #ffffff;
-  color: #000000;
-  text-decoration: none;
-  border-radius: 16px;
-  border: none;
-  font-size: 11px;
-  font-weight: 500;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.service-button:hover {
-  background: #f0f0f0;
-  transform: translateY(-1px);
-}
-
-
-  .banner-title {
-    color: #ffffff !important;
+  .trust-points {
+    margin-top: 10px;
+    width: 100%;
   }
 
-  @media screen and (max-width: 1199px) {
-    &.chatbot-banner {
-      .chatbot-banner-text {
-        max-width: 430px;
-        min-height: 650px;
-        .title {
-          font-size: 40px;
-          font-weight: 700;
-          line-height: 60px;
-        }
-      }
-    }
-    .chatbot-banner-video {
-      .chatbot-banner-video-overlay {
-        .banner-chat-section {
-          max-width: 345px;
-          video {
-            min-height: 600px;
-            max-width: auto;
-          }
-        }
-      }
-    }
-    .v8banner-video {
-      video {
-        min-height: 500px;
-      }
-    }
-    .start-free-form {
-      max-height: 64px;
-      .bg-blue-btn {
-        padding: 8px 20px;
-      }
-    }
+  .point {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
 
-    .hero-content-list .list-item p {
-      font-size: 14px;
-    }
+  .arrow-icon {
+    color: #ff7a00;
+    font-size: 22px;
+    flex-shrink: 0;
+    animation: arrowBounce 1.2s infinite ease-in-out;
   }
-  @media screen and (min-width: 991px) and (max-width: 1200px) {
+  .point:nth-child(2) .arrow-icon {
+    animation-delay: 0.2s;
   }
+  @keyframes arrowBounce {
+    0%   { transform: translateX(0);  opacity: 0.6; }
+    50%  { transform: translateX(8px); opacity: 1; }
+    100% { transform: translateX(0);  opacity: 0.6; }
+  }
+
+  /* SEARCH BAR */
+  .search-box {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.31);
+    border-radius: 40px;
+    padding: 0 8px 0 20px;
+    width: 100%;
+    max-width: 500px;
+    height: 55px;
+  }
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0;
+    font-size: 14px;
+    color: #ffffff;
+    background: transparent;
+    height: 100%;
+    text-align: left;
+  }
+  .search-box input::placeholder { color: #fff; }
+  .search-box button {
+    background: #00a8e8;
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    height: 45px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .search-box button:hover { background: #0099d4; }
+
+  /* RECOMMENDED SERVICES */
+  .recommended-services {
+    margin-top: 30px;
+    width: 100%;
+  }
+  .services-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .service-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 16px;
+    border: none;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  .service-button:hover { background: #f0f0f0; transform: translateY(-1px); }
+
+  .banner-title { color: #ffffff !important; }
+
+  /* ── responsive ─────────────────────────────────────────────── */
+
+  /* Tablet landscape / smaller desktop — start stacking at 991px */
   @media screen and (max-width: 991px) {
-    .v8banner-video {
-      top: 70px;
-      video {
-        min-height: 470px;
-      }
+    .banner-flex-row {
+      flex-direction: column;
+      min-height: auto;
     }
-  }
-  @media screen and (min-width: 768px) and (max-width: 991px) {
-  }
-  @media screen and (max-width: 767px) {
-    padding: 140px 0 0;
-    /*-- ChatBot Start --*/
-    &.chatbot-banner {
-      .chatbot-banner-text {
-        padding-bottom: 0px;
-        min-height: 550px;
-        .title {
-          text-align: center;
-        }
-      }
+    .banner-left {
+      flex: none;
+      width: 100%;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 40px;
+      padding-bottom: 30px;
     }
-    &.chatbot-banner {
-      padding: 70px 0 0 0;
-      padding-top: 140px;
-    }
-    .chatbot-banner-video {
-      &.v8banner-video {
-        video {
-          min-height: 600px;
-        }
-      }
-    }
-    .v8banner-video {
-      position: relative;
-      top: 0px;
+    .banner-right {
+      flex: none;
       width: 100%;
     }
-    &.chatbot-banner {
-      .chatbot-banner-text {
-        padding-right: 0px;
-        margin: auto;
-        p {
-          text-align: center;
-        }
-      }
-      .hero-content-list {
-        justify-content: center;
-        margin: auto;
-        margin-top: 0px;
-      }
+    .v8banner-text {
+      width: 100%;
     }
+    &.chatbot-banner .chatbot-banner-text {
+      .title {
+        font-size: 36px;
+        line-height: 52px;
+      }
+      p { font-size: 16px; line-height: 28px; }
+    }
+    .search-box { max-width: 100%; }
+    .recommended-services { max-width: 100%; }
   }
-  @media screen and (max-width: 575px) {
-    .chatbot-banner-video {
-      .chatbot-banner-video-overlay {
-        .banner-chat-section {
-          max-width: 275px;
-          video {
-            min-height: 482px;
-          }
-        }
-      }
-      &.v8banner-video {
-        video {
-          min-height: 482px;
-        }
-      }
-    }
-  }
-  @media screen and (max-width: 480px) {
-    &.chatbot-banner {
-      .hero-content-list {
-        gap: 16px;
-      }
-    }
-  }
-  @media screen and (max-width: 425px) {
-    &.chatbot-banner {
-      .hero-content-list {
-        margin-top: 30px;
-        li {
-          margin-bottom: -5px;
-        }
-      }
-    }
 
-    &.chatbot-banner {
-      .chatbot-banner-text {
-        min-height: 600px;
-        padding-bottom: 20px;
-      }
+  @media screen and (max-width: 767px) {
+    padding-top: 70px;
+    &.chatbot-banner { padding-top: 80px; }
+    .banner-left {
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 30px;
     }
-    .start-free-form {
-      flex-direction: column;
-      max-height: inherit;
-      background: transparent;
-      padding: 0px;
-      .form-input {
-        width: 100%;
-        padding: 12px 25px;
-        background: ${({ theme }) => theme.colors.whiteColor} !important;
-        border-radius: 35px;
-      }
-      .bg-blue-btn {
-        width: 100%;
-        padding: 12px 14px;
-      }
+    &.chatbot-banner .chatbot-banner-text {
+      .title { font-size: 28px; line-height: 40px; }
+      p { font-size: 14px; line-height: 26px; }
     }
+    .point { font-size: 15px; }
+    .search-box { height: 48px; padding: 0 6px 0 14px; }
+    .search-box button { padding: 8px 18px; font-size: 12px; }
   }
+
+  @media screen and (max-width: 575px) {
+    .banner-left { padding-left: 15px; padding-right: 15px; }
+    &.chatbot-banner .chatbot-banner-text {
+      .title { font-size: 24px; line-height: 36px; }
+    }
+    .service-button { font-size: 10px; padding: 5px 10px; }
+  }
+
+  @media screen and (max-width: 425px) {
+    &.chatbot-banner .chatbot-banner-text {
+      .title { font-size: 21px; line-height: 31px; }
+    }
+    .point { font-size: 14px; }
+    .arrow-icon { font-size: 18px; }
+  }
+
   @media screen and (max-width: 374px) {
+    &.chatbot-banner .chatbot-banner-text {
+      .title { font-size: 19px; line-height: 28px; }
+      p { font-size: 13px; line-height: 22px; }
+    }
   }
-  @media screen and (min-width: 768px) {
+
+  /* Large screens — keep left padding aligned with rest of site */
+  @media screen and (min-width: 1400px) {
+    .banner-left { padding-right: 60px; }
+  }
+  @media screen and (min-width: 1600px) {
+    .banner-left { padding-right: 80px; }
+    .banner-title { font-size: 56px !important; line-height: 1.2 !important; }
+  }
+  @media screen and (min-width: 1920px) {
+    .banner-left { padding-right: 100px; }
+    .banner-title { font-size: 64px !important; line-height: 1.2 !important; }
+    .point { font-size: 20px; }
+    .search-box { max-width: 620px; height: 62px; }
+    .service-button { font-size: 13px; padding: 8px 16px; }
   }
 `;
 

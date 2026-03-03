@@ -169,6 +169,7 @@ const ModalContent = styled.div`
 function PowerfullTemplate() {
   const powerfullTemplateContentRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
+  const hasAutoOpenedRef = useRef(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -182,6 +183,26 @@ function PowerfullTemplate() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  // Auto-open when FinanceLetsTalk section enters viewport — resets every page load
+  useEffect(() => {
+    const target = document.getElementById("finance-lets-talk");
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAutoOpenedRef.current) {
+          hasAutoOpenedRef.current = true;
+          setShowModal(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -243,7 +264,7 @@ function PowerfullTemplate() {
                 lineHeight: "45px"
               }}
               subtitleStyle={{
-                color: "#000000"
+                color: "#ff6b00"
               }}
             />
             <h6 className="mb-0" style={{ marginTop: "12px" }}>

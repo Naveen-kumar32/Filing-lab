@@ -39,7 +39,7 @@ const FinanceLetsTalk = () => {
   }, []);
 
   return (
-    <FinanceLetsTalkStyle className="lets-talk-section" ref={sectionRef}>
+    <FinanceLetsTalkStyle className="lets-talk-section" id="finance-lets-talk" ref={sectionRef}>
       <ScrollAnimate delay={200}>
         <div className="container">
           <div className="lets-talk-content">

@@ -554,6 +554,76 @@ const HeaderStyleWrapper = styled.header`
     }
   }
 
+  /* Right-side controls wrapper (quick-links + toggler) */
+  .header-right-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Quick-links dropdown — always visible */
+  .quick-links-dropdown {
+    position: relative;
+    margin-left: 12px;
+    flex-shrink: 0;
+
+    .quick-links-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(0, 0, 0, 0.15);
+      background: transparent;
+      cursor: pointer;
+      color: #000000;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #ff6b00;
+        border-color: #ff6b00;
+        color: #ffffff;
+      }
+    }
+
+    .quick-links-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      min-width: 200px;
+      padding: 8px 0;
+      z-index: 9999;
+      flex-direction: column;
+
+      a {
+        display: block;
+        padding: 10px 20px;
+        color: #1a1a1a;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+
+        &:hover {
+          color: #ff6b00;
+          background: #fff4ee;
+          border-left-color: #ff6b00;
+          padding-left: 24px;
+        }
+      }
+    }
+
+    &.ql-open .quick-links-menu {
+      display: flex;
+    }
+  }
+
   /* Collapse wrapper — takes all remaining space */
   .header-navbar-content {
     display: flex;
@@ -564,13 +634,12 @@ const HeaderStyleWrapper = styled.header`
     height: 100%;
   }
 
-  /* Nav list — absolutely centered in the navbar */
+  /* Nav list — starts 70px after the logo */
   .header-nav-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(calc(-50% - 100px));
+    margin-left: 40px;
+    flex: 0 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     white-space: nowrap;
   }
@@ -581,8 +650,6 @@ const HeaderStyleWrapper = styled.header`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    position: absolute;
-    right: -60px;
   }
 
   .header-extra {
@@ -597,10 +664,10 @@ const HeaderStyleWrapper = styled.header`
   .header-contact-box {
     display: flex;
     align-items: center;
-    gap: 14px;
-    border: 2px solid #000000;
-    border-radius: 50px;
-    padding: 6px 18px;
+    gap: 10px;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 10px;
+    padding: 4px 12px;
     background: transparent;
   }
 
@@ -608,13 +675,126 @@ const HeaderStyleWrapper = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
     text-decoration: none;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease;
     &:hover {
-      color: #ff6b00;
-      transform: scale(1.15);
+      transform: scale(1.18);
+      filter: brightness(1.2);
     }
+  }
+
+  /* ── Contact Hover Tooltip ── */
+  .header-contact-box {
+    position: relative;
+  }
+
+  .contact-tooltip {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 380px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
+    transform: translateX(-50%) translateY(8px);
+    overflow: hidden;
+  }
+
+  .contact-tooltip-arrow {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #ffffff;
+    filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.08));
+  }
+
+  .contact-tooltip-panels {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .contact-tooltip-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 22px;
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    border-right: 1px solid #f0f0f0;
+    transition: background 0.18s ease;
+    &:last-child {
+      border-right: none;
+    }
+    &:hover {
+      background: #f8f9ff;
+      text-decoration: none;
+    }
+  }
+
+  .contact-tooltip-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    &.phone-icon {
+      background: #0069e4;
+    }
+    &.email-icon {
+      background: #e0392b;
+    }
+    &.whatsapp-icon {
+      background: #25D366;
+    }
+  }
+
+  .contact-tooltip-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .contact-tooltip-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-tooltip-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+  }
+
+  .header-contact-box.contact-open .contact-tooltip {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
   }
 
   @keyframes logo-shake {
@@ -631,9 +811,6 @@ const HeaderStyleWrapper = styled.header`
   .header-logo {
     img {
       filter: none !important;
-      &:hover {
-        animation: logo-shake 0.5s ease;
-      }
     }
   }
 
@@ -704,7 +881,7 @@ const HeaderStyleWrapper = styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 4px;
+    gap: 0 !important;
     .megaTablinks,
     .has-submenu {
       padding-right: 12px;
@@ -752,14 +929,32 @@ const HeaderStyleWrapper = styled.header`
     > li > a {
       color: #000000;
       transition: background-color 0.2s ease, color 0.2s ease, padding 0.2s ease;
-      padding: 5px 12px;
+      padding: 5px 6px;
       border-radius: 50px;
       font-weight: 500;
       display: inline-block;
-      &:hover,
-      &:focus {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      &:hover {
         color: #ffffff !important;
         background-color: #ff6b00;
+      }
+      &:focus,
+      &:focus-visible,
+      &:active,
+      &.active {
+        color: #000000 !important;
+        background-color: transparent !important;
+        outline: none;
+        box-shadow: none;
+      }
+      &:focus:hover,
+      &:focus-visible:hover,
+      &:active:hover {
+        color: #ffffff !important;
+        background-color: #ff6b00 !important;
+        outline: none;
+        box-shadow: none;
       }
     }
 
@@ -821,6 +1016,19 @@ const HeaderStyleWrapper = styled.header`
       transition: 0.3s;
       &:hover {
         color: #041783;
+      }
+    }
+    /* Sign In button — fixed dark navy, no blue override on sticky */
+    .bg-white-btn {
+      background-color: #0d1b4b !important;
+      color: #ffffff !important;
+      padding: 6px 18px !important;
+      font-size: 14px;
+      span {
+        color: #ffffff !important;
+      }
+      &:hover {
+        background-color: #1a2f6e !important;
       }
     }
   }
@@ -1333,7 +1541,7 @@ const HeaderStyleWrapper = styled.header`
     }
   }
 
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1349px) {
     .mobile-menu {
       display: block;
     }
@@ -1460,7 +1668,7 @@ const HeaderStyleWrapper = styled.header`
     }
   }
 
-  @media screen and (min-width: 991px) and (max-width: 1200px) {
+  @media screen and (min-width: 1350px) and (max-width: 1499px) {
     .header-extra {
       gap: 25px;
       .btn-light-green {
@@ -1533,7 +1741,7 @@ const HeaderStyleWrapper = styled.header`
     }
   }
 
-  @media screen and (max-width: 991px) {
+  @media screen and (max-width: 1349px) {
     .header-navbar-content {
       position: fixed;
       top: 0;

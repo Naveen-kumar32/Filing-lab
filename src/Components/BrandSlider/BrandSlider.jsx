@@ -39,7 +39,7 @@ const BrandSlider = ({ titleClass, sliderClass }) => {
           <div className="col-md-12">
             <ScrollAnimate delay={200}>
               <div className={titleClass}>
-                <h2>Trusted by Businesses Nationwide</h2>
+                <h2 style={{color:"#ff6b00"}}>Trusted by Businesses Nationwide</h2>
               </div>
             </ScrollAnimate>
             <ScrollAnimate delay={200}>

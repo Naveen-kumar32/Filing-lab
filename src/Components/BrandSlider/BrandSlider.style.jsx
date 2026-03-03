@@ -287,7 +287,6 @@ const BrandSliderStyleWrapper = styled.section`
       border-radius: 12px;
       padding: 20px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
       
@@ -305,12 +304,6 @@ const BrandSliderStyleWrapper = styled.section`
           transparent
         );
         animation: shimmer 2s infinite;
-      }
-      
-      &:hover {
-        // border-color: #8b5cf6;
-        border-color: #f6765cff;
-        box-shadow: 0 12px 32px rgba(246, 118, 92, 0.25);
       }
       
       img {

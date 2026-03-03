@@ -4,15 +4,131 @@ import chatbot from "../../../assets/images/chat-bot/chatbot-icon.png";
 
 const PHASES = { ONE: 1, TWO: 2, THREE: 3 };
 
+// Greeting lines to type out one by one
+const GREETING_LINES = [
+  { text: "Hi, I am Uma.", bold: [] },
+  { text: "Welcome to FilingLab 👋", bold: ["FilingLab"] },
+  { text: "How may I assist you?", bold: [] },
+];
+
 const VAChatbot = () => {
   const [open, setOpen] = useState(false);
   const [phase, setPhase] = useState(PHASES.ONE);
   const [selectedTopic, setSelectedTopic] = useState("");
   const [form, setForm] = useState({ name: "", mobile: "", email: "", description: "" });
   const [errors, setErrors] = useState({});
+  // Typing animation state
+  const [typedLines, setTypedLines] = useState([]);   // fully typed lines shown
+  const [currentLine, setCurrentLine] = useState("");  // chars being typed right now
+  const [lineIndex, setLineIndex] = useState(0);       // which greeting line we're on
+  const [showDots, setShowDots] = useState(false);     // show "..." before typing starts
+  const [greetingDone, setGreetingDone] = useState(false); // all lines done
+  const typingTimersRef = useRef([]);
   const chatEndRef = useRef(null);
   const chatTopRef = useRef(null);
   const notificationSound = useRef(null);
+  const hasAutoOpenedRef = useRef(false);
+  const chatbotRef = useRef(null);
+
+  // Reset and start typing animation whenever chatbot opens on phase 1
+  useEffect(() => {
+    if (!open || phase !== PHASES.ONE) return;
+    // Clear any previous timers
+    typingTimersRef.current.forEach(clearTimeout);
+    typingTimersRef.current = [];
+    setTypedLines([]);
+    setCurrentLine("");
+    setLineIndex(0);
+    setShowDots(false);
+    setGreetingDone(false);
+  }, [open, phase]);
+
+  // Drive the typewriter: show dots → type chars → move to next line
+  useEffect(() => {
+    if (!open || phase !== PHASES.ONE || greetingDone) return;
+    if (lineIndex >= GREETING_LINES.length) {
+      setGreetingDone(true);
+      setShowDots(false);
+      return;
+    }
+
+    const line = GREETING_LINES[lineIndex].text;
+    let charIdx = 0;
+
+    // 1. Show typing dots for 500ms
+    const dotsTimer = setTimeout(() => {
+      setShowDots(true);
+
+      // 2. After dots shown, start typing characters
+      const startTypingTimer = setTimeout(() => {
+        setShowDots(false);
+
+        const typeNext = () => {
+          if (charIdx < line.length) {
+            const captured = charIdx;
+            charIdx++;
+            const t = setTimeout(() => {
+              setCurrentLine(line.slice(0, captured + 1));
+              typeNext();
+            }, 38);
+            typingTimersRef.current.push(t);
+          } else {
+            // Line fully typed — commit it and move to next
+            const commitTimer = setTimeout(() => {
+              setTypedLines((prev) => [...prev, line]);
+              setCurrentLine("");
+              setLineIndex((prev) => prev + 1);
+            }, 120);
+            typingTimersRef.current.push(commitTimer);
+          }
+        };
+        typeNext();
+      }, 500);
+      typingTimersRef.current.push(startTypingTimer);
+    }, lineIndex === 0 ? 400 : 200);
+
+    typingTimersRef.current.push(dotsTimer);
+
+    return () => {
+      typingTimersRef.current.forEach(clearTimeout);
+      typingTimersRef.current = [];
+    };
+  }, [lineIndex, open, phase, greetingDone]);
+
+  // Close when clicking outside the chatbot widget
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (
+        open &&
+        chatbotRef.current &&
+        !chatbotRef.current.contains(e.target)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [open]);
+
+  // Auto-open when FinanceLetsTalk section enters viewport — resets every page load
+  useEffect(() => {
+    const target = document.getElementById("finance-lets-talk");
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAutoOpenedRef.current) {
+          hasAutoOpenedRef.current = true;
+          setOpen(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     chatTopRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -62,7 +178,7 @@ const VAChatbot = () => {
   };
 
   return (
-    <>
+    <div ref={chatbotRef}>
       <div className="chatbot-toggle" onClick={() => setOpen(!open)}>
         <img src={chatbot} alt="Chatbot" />
       </div>
@@ -86,19 +202,40 @@ const VAChatbot = () => {
             {/* ── PHASE 1: Greeting + Options ── */}
             {phase === PHASES.ONE && (
               <>
-                <div className="bot-msg">
-                  <p>Hi, I am <strong>Uma</strong>.</p>
-                  <p>Welcome to <strong>FilingLab</strong> 👋</p>
-                  <p>How may I assist you?</p>
-                </div>
-                <div className="bot-msg">
-                  <p>Please select your purpose:</p>
-                </div>
-                {["Start a New Business", "GST / Tax Filing", "ROC / Annual Compliance", "Licences & Registrations", "Other Enquiry"].map((opt) => (
-                  <button key={opt} className="chat-option" onClick={() => handleTopicClick(opt)}>
-                    {opt}
-                  </button>
+                {/* Already-typed lines — each in its own bubble */}
+                {typedLines.map((line, i) => (
+                  <div key={i} className="bot-msg bot-msg-line">
+                    <p dangerouslySetInnerHTML={{
+                      __html: line
+                        .replace("Uma", "<strong>Uma</strong>")
+                        .replace("FilingLab", "<strong>FilingLab</strong>")
+                    }} />
+                  </div>
                 ))}
+
+                {/* Currently typing line or dots indicator */}
+                {!greetingDone && (
+                  <div className="bot-msg bot-msg-line">
+                    {showDots
+                      ? <span className="typing-dots"><span /><span /><span /></span>
+                      : <p>{currentLine}<span className="typing-cursor">|</span></p>
+                    }
+                  </div>
+                )}
+
+                {/* Options appear only after all lines typed */}
+                {greetingDone && (
+                  <>
+                    <div className="bot-msg">
+                      <p>Please select your purpose:</p>
+                    </div>
+                    {["Start a New Business", "GST / Tax Filing", "ROC / Annual Compliance", "Licences & Registrations", "Other Enquiry"].map((opt) => (
+                      <button key={opt} className="chat-option" onClick={() => handleTopicClick(opt)}>
+                        {opt}
+                      </button>
+                    ))}
+                  </>
+                )}
               </>
             )}
 
@@ -154,7 +291,7 @@ const VAChatbot = () => {
       )}
 
       <audio ref={notificationSound} src="/chatbot-notification.mp3" />
-    </>
+    </div>
   );
 };
 

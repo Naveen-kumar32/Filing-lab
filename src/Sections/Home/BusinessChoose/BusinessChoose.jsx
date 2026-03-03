@@ -67,7 +67,7 @@ const BusinessChoose = () => {
                 lineHeight: "45px"
               }}
               subtitleStyle={{
-                color: "#000000"
+                color: "#ff6b00"
               }}
             />
             </ScrollAnimate>
