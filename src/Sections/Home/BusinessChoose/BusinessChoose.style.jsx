@@ -27,21 +27,20 @@ const BusinessChooseStyle = styled.section`
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 32px;
 
-      .slick-list {
-        padding: 0 !important;
-        width: 100% !important;
-        overflow: visible;
-      }
-
-      .slick-track {
-        width: 100% !important;
-        transform: translate3d(0px, 0px, 0px) !important;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
+      /* active tab progress line — real <span> remounted via React key */
+      .tab-progress-line {
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        height: 4px;
+        width: 0%;
+        background: #ff9a42;
+        border-radius: 1px;
+        animation: lineProgress 6000ms linear forwards;
       }
 
       .slick-slide {
@@ -51,18 +50,6 @@ const BusinessChooseStyle = styled.section`
         text-align: center;
         &.slick-current {
           opacity: 1;
-          &::after {
-            content: "";
-            position: absolute;
-            height: 4px;
-            background: #ff9a42;
-            border-radius: 1px;
-            width: 20%;
-            bottom: -8px;
-            left: 0px;
-            animation: lineProgress 6.5s linear infinite;
-            -webkit-animation: lineProgress  6.5s linear infinite;
-          }
           span {
             &:nth-child(1) {
               color: #ff9a42;
@@ -92,6 +79,11 @@ const BusinessChooseStyle = styled.section`
     font-weight: 700;
     color: ${({ theme }) => theme.colors.title};
     transition: 0.3s;
+    position: relative;
+    padding-bottom: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
     span {
       color: #ff9a42;
       transition: 0.3s;
@@ -128,6 +120,11 @@ const BusinessChooseStyle = styled.section`
     &-icon {
       width: 30%;
       flex: 0 0 auto;
+    }
+    &-img {
+      img {
+        border-radius: 20px;
+      }
     }
     &-text {
       flex: 0 0 auto;

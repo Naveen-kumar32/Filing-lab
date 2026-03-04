@@ -9,50 +9,51 @@ import whyChoose3 from "../../../assets/images/why-choose-us/3.svg";
 import whyChoose4 from "../../../assets/images/why-choose-us/4.svg";
 import ScrollAnimate from "../../../Components/ScrollAnimate";
 
+const TABS = [
+  { num: "01.", label: "Accuracy & Compliance" },
+  { num: "02.", label: "Timely Delivery" },
+  { num: "03.", label: "Expert Guidance" },
+  { num: "04.", label: "Transparent Process" },
+];
+const AUTOPLAY_DURATION = 6000;
+
 const BusinessChoose = () => {
   const sliderForRef = useRef(null);
-  const sliderNavRef = useRef(null);
+  const [activeTab, setActiveTab] = useState(0);
+  const intervalRef = useRef(null);
 
-  const [settingsFor, setSettingsFor] = useState({
+  const startAutoplay = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActiveTab((prev) => {
+        const next = (prev + 1) % TABS.length;
+        sliderForRef.current?.slickGoTo(next);
+        return next;
+      });
+    }, AUTOPLAY_DURATION);
+  };
+
+  useEffect(() => {
+    startAutoplay();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const handleTabClick = (i) => {
+    setActiveTab(i);
+    sliderForRef.current?.slickGoTo(i);
+    startAutoplay();
+  };
+
+  const settingsFor = {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
-    autoplaySpeed: 6000,
+    autoplay: false,
     infinite: true,
-    asNavFor: sliderNavRef.current,
-    ref: sliderForRef,
-    pauseOnHover: false,
-    pauseOnFocus: false,
-  });
-
-  const [settingsNav, setSettingsNav] = useState({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    asNavFor: sliderForRef.current,
-    dots: false,
-    autoplay: true,
-    autoplaySpeed: 6000,
-    centerMode: false,
-    focusOnSelect: true,
-    ref: sliderNavRef,
-    pauseOnHover: false,
-    pauseOnFocus: false,
-  });
-
-  useEffect(() => {
-    setSettingsFor((prevSettings) => ({
-      ...prevSettings,
-      asNavFor: sliderNavRef.current,
-    }));
-    setSettingsNav((prevSettings) => ({
-      ...prevSettings,
-      asNavFor: sliderForRef.current,
-    }));
-  }, []);
+  };
 
   return (
-    <BusinessChooseStyle className="why-choose-section">
+    <BusinessChooseStyle className="why-choose-section" id="business-choose">
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -81,28 +82,25 @@ const BusinessChoose = () => {
         <div className="why-choose-container container">
           <div className="container">
             <div className="why-choose-tab">
-              <Slider
-                {...settingsNav}
-                className="tab-buttons why-chose-slider-nav"
-              >
-                <button className="tab-btn">
-                  <span>01.</span> <span className="text" style={{color:"orange"}}>Accuracy & Compliance</span>
-                </button>
-                <button className="tab-btn">
-                  <span>02.</span> <span className="text" style={{color:"orange"}}>Timely Delivery</span>
-                </button>
-                <button className="tab-btn">
-                  <span>03.</span> <span className="text" style={{color:"orange"}}>Expert Guidance</span>
-                </button>
-                <button className="tab-btn">
-                  <span>04.</span> <span className="text" style={{color:"orange"}}>Transparent Process</span>
-                </button>
-              </Slider>
-              <progress max={100} value={0} />
+              <div className="tab-buttons why-chose-slider-nav">
+                {TABS.map((tab, i) => (
+                  <button
+                    key={i}
+                    className={`tab-btn${activeTab === i ? " slick-current" : ""}`}
+                    onClick={() => handleTabClick(i)}
+                  >
+                    <span>{tab.num}</span>{" "}
+                    <span className="text" style={{ color: "orange" }}>{tab.label}</span>
+                    {activeTab === i && (
+                      <span key={activeTab} className="tab-progress-line" />
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          <Slider {...settingsFor} className="convert-visitors-slider-for why-chose-slider">
+          <Slider {...settingsFor} ref={sliderForRef} className="convert-visitors-slider-for why-chose-slider">
             <div className="section">
               <div className="tab-body">
                 <div className="tab-body-img">

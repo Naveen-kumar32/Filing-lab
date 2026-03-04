@@ -15,7 +15,7 @@ const ConsultationStyleWrapper = styled.section`
     margin: 0 auto;
     background: ${({ theme }) => theme.colors.whiteColor};
     border-radius: 30px 30px 0px 0px;
-    overflow: hidden;
+    overflow: visible;
   }
   .consultation-card .row > .col-md-6:first-child {
     flex: 0 0 auto !important;
@@ -39,9 +39,10 @@ const ConsultationStyleWrapper = styled.section`
     margin-bottom: 46px;
   }
   .consultation-form {
-    padding: 91px 60px 91px 30px;
+    padding: 60px 60px 60px 30px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 
     .consultation-form-title {
@@ -49,8 +50,8 @@ const ConsultationStyleWrapper = styled.section`
       font-weight: 600;
       line-height: 1.5;
       color: ${({ theme }) => theme.colors.title};
-      margin-bottom: 14px;
-      margin-top: 0;
+      margin-bottom: 48px;
+      margin-top: 20px;
       max-width: 320px;
       text-align: center;
     }
@@ -58,16 +59,24 @@ const ConsultationStyleWrapper = styled.section`
     form {
       width: 100%;
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
       flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+
+      /* each label+input block */
+      .form-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
 
       .consultation-disclaimer {
         font-size: 11px;
         color: #999999;
         text-align: center;
         width: 100%;
-        margin-top: 60px;
+        margin-top: 16px;
         margin-bottom: 0;
         line-height: 1.5;
         a {
@@ -81,8 +90,7 @@ const ConsultationStyleWrapper = styled.section`
         display: block;
         font-size: 11px;
         color: #e53935;
-        margin-top: -18px;
-        margin-bottom: 10px;
+        margin-top: 4px;
       }
 
       label {
@@ -106,7 +114,7 @@ const ConsultationStyleWrapper = styled.section`
         line-height: 30px;
         color: ${({ theme }) => theme.colors.title};
         padding: 10px 15px;
-        margin-bottom: 25px;
+        margin-bottom: 0;
       }
     }
   }
@@ -116,7 +124,8 @@ const ConsultationStyleWrapper = styled.section`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 14px;
+    margin-top: 20px;
+    margin-bottom: 8px;
 
     .whatsapp-toggle-label {
       display: flex;
@@ -169,6 +178,7 @@ const ConsultationStyleWrapper = styled.section`
     justify-content: center !important;
     overflow: visible !important;
     align-self: center !important;
+    margin-top: 16px;
     .btn-inner { height: 42px !important; }
   }
 
@@ -177,7 +187,7 @@ const ConsultationStyleWrapper = styled.section`
     align-items: center;
     width: 100%;
     height: 40px;
-    margin-bottom: 25px;
+    margin-bottom: 0;
     border: 1px solid ${({ theme }) => theme.colors.blackColor}1f;
     border-radius: 10px;
     overflow: visible;

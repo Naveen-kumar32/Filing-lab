@@ -513,7 +513,7 @@ const Header = ({ variant, ...props }) => {
                                     </div>
                                     <div className="contact-tooltip-text">
                                       <span className="contact-tooltip-label">Email Us</span>
-                                      <span className="contact-tooltip-value">info@filinglab.in</span>
+                                      <span className="contact-tooltip-value">Contact@filinglab.com</span>
                                     </div>
                                   </a>
                                   {/* WhatsApp */}

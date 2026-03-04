@@ -524,7 +524,7 @@ const HeaderStyleWrapper = styled.header`
 
   .header-navbar-container {
     padding-left: 64px;
-    padding-right: 64px;
+    padding-right: 24px;
     display: flex;
     align-items: center;
     gap: 0;
@@ -634,12 +634,11 @@ const HeaderStyleWrapper = styled.header`
     height: 100%;
   }
 
-  /* Nav list — starts 70px after the logo */
+  /* Nav list — middle column, items centered inside it */
   .header-nav-center {
-    margin-left: 40px;
-    flex: 0 0 auto;
+    flex: 1;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     white-space: nowrap;
   }
@@ -1541,7 +1540,7 @@ const HeaderStyleWrapper = styled.header`
     }
   }
 
-  @media only screen and (max-width: 1349px) {
+  @media only screen and (max-width: 1280px) {
     .mobile-menu {
       display: block;
     }
@@ -1668,7 +1667,7 @@ const HeaderStyleWrapper = styled.header`
     }
   }
 
-  @media screen and (min-width: 1350px) and (max-width: 1499px) {
+  @media screen and (min-width: 1281px) and (max-width: 1499px) {
     .header-extra {
       gap: 25px;
       .btn-light-green {
@@ -1741,7 +1740,7 @@ const HeaderStyleWrapper = styled.header`
     }
   }
 
-  @media screen and (max-width: 1349px) {
+  @media screen and (max-width: 1280px) {
     .header-navbar-content {
       position: fixed;
       top: 0;

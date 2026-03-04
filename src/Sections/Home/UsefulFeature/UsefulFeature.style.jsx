@@ -14,44 +14,20 @@ const UsefulFeatureStyleWrapper = styled.section`
     }
 
     .useful-feature-slider-nav {
-        .slick-list {
-            padding: 0 !important;
-
-            .slick-slide {
-                width: max-content !important;
-
-                &.slick-current {
-                    .slider-item {
-                        color: #ff9a42;
-                        p {
-                            font-weight: 700;
-                            color: #000000ff;
-                        }
-                        &::before {
-                            opacity: 1;
-                            animation: tabAnimate 6.5s linear;
-                        }
-                    }
-                }
-            }
-        }
-
-        .slick-track {
-            width: 100% !important;
-            transform: translate3d(0px, 0px, 0px) !important;
-            margin: 0 -10px;
-            display: flex !important;
-            justify-content: center;
-        }
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 0;
 
         .slider-item {
-            margin: 10px;
+            margin: 0;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            width: max-content !important;
-            height: 50px !important;
-            padding: 13px 28px !important;
+            width: max-content;
+            height: 50px;
+            padding: 13px 28px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -68,20 +44,29 @@ const UsefulFeatureStyleWrapper = styled.section`
                 font-weight: 400;
                 color: #999999;
                 margin: 0;
+                position: relative;
+                z-index: 1;
             }
 
-            &::before {
-                position: absolute;
-                z-index: -1;
-                content: "";
-                top: 0;
-                left: 0;
-                width: 0%;
-                height: 100%;
-                background-color: #ff9a42;
-                opacity: 0;
-                transition: 0.3s;
+            &.slick-current {
+                p {
+                    font-weight: 700;
+                    color: #000000;
+                }
             }
+        }
+
+        /* progress bar — a real <span> remounted via React key, so animation always restarts */
+        .tab-progress-bar {
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #ff9a42;
+            opacity: 1;
+            animation: tabAnimate 6000ms linear forwards;
         }
     }
 

@@ -110,9 +110,9 @@ const VAChatbot = () => {
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [open]);
 
-  // Auto-open when FinanceLetsTalk section enters viewport — resets every page load
+  // Auto-open when BusinessChoose section enters viewport — resets every page load
   useEffect(() => {
-    const target = document.getElementById("finance-lets-talk");
+    const target = document.getElementById("business-choose");
     if (!target) return;
 
     const observer = new IntersectionObserver(
@@ -242,9 +242,6 @@ const VAChatbot = () => {
             {/* ── PHASE 2: Contact Details Form ── */}
             {phase === PHASES.TWO && (
               <>
-                <button className="chat-back-btn" onClick={() => setPhase(PHASES.ONE)}>
-                  ← Back
-                </button>
                 <div className="user-msg">{selectedTopic}</div>
                 <div className="bot-msg">
                   <p>Thank you! To assist you better, please share:</p>

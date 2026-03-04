@@ -46,43 +46,43 @@ import cfoIcon from "../../../assets/images/icons1/virtual-cfo-services.svg";
 import payrollIcon from "../../../assets/images/icons1/payroll-management.svg";
 import cashFlowIcon from "../../../assets/images/icons1/cash-flow-management.svg";
 
-const UsefulFeature = () => {
-  const sliderNavRef = useRef(null);
-  const sliderForRef = useRef(null);
+const TABS = ["Business", "Licensing", "Taxation", "Compliance", "Finance"];
+const AUTOPLAY_DURATION = 6000;
 
-  const [settingsFor, setSettingsFor] = useState({
+const UsefulFeature = () => {
+  const sliderForRef = useRef(null);
+  const [activeTab, setActiveTab] = useState(0);
+  const intervalRef = useRef(null);
+
+  const startAutoplay = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActiveTab((prev) => {
+        const next = (prev + 1) % TABS.length;
+        sliderForRef.current?.slickGoTo(next);
+        return next;
+      });
+    }, AUTOPLAY_DURATION);
+  };
+
+  useEffect(() => {
+    startAutoplay();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const handleTabClick = (i) => {
+    setActiveTab(i);
+    sliderForRef.current?.slickGoTo(i);
+    startAutoplay(); // reset timer on manual click
+  };
+
+  const settingsFor = {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
-    autoplaySpeed: 6000,
+    autoplay: false,
     infinite: true,
-    asNavFor: sliderNavRef.current,
-    ref: sliderForRef,
-  });
-
-  const [settingsNav, setSettingsNav] = useState({
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    dots: false,
-    autoplay: true,
-    autoplaySpeed: 6000,
-    centerMode: false,
-    focusOnSelect: true,
-    ref: sliderNavRef,
-  });
-
-  useEffect(() => {
-    setSettingsFor((prevSettings) => ({
-      ...prevSettings,
-      asNavFor: sliderNavRef.current,
-    }));
-
-    setSettingsNav((prevSettings) => ({
-      ...prevSettings,
-      asNavFor: sliderForRef.current,
-    }));
-  }, []);
+  };
 
 
   return (
@@ -112,27 +112,20 @@ const UsefulFeature = () => {
         <ScrollAnimate delay={200}>
           <div className="row">
             <div className="col-md-12">
-              <Slider
-                {...settingsNav}
-                ref={sliderNavRef}
-                className="useful-feature-slider-nav slider-nav"
-              >
-                <div className="slider-item">
-                  <p>Business</p>
-                </div>
-                <div className="slider-item">
-                  <p>Licensing</p>
-                </div>
-                <div className="slider-item">
-                  <p>Taxation</p>
-                </div>
-                <div className="slider-item">
-                  <p>Compliance</p>
-                </div>
-                <div className="slider-item">
-                  <p>Finance</p>
-                </div>
-              </Slider>
+              <div className="useful-feature-slider-nav slider-nav">
+                {TABS.map((tab, i) => (
+                  <div
+                    key={i}
+                    className={`slider-item${activeTab === i ? " slick-current" : ""}`}
+                    onClick={() => handleTabClick(i)}
+                  >
+                    {activeTab === i && (
+                      <span key={activeTab} className="tab-progress-bar" />
+                    )}
+                    <p>{tab}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className="row">

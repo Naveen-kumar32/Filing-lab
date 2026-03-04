@@ -126,17 +126,20 @@ const Consultation = () => {
                   <img src={outgoingCallImage} alt="Outgoing Call" />
                   </ScrollAnimate>
                 </div>
-                {/* <ScrollAnimate delay={250}>
+                <ScrollAnimate delay={250}>
                 <div className="consultation-text">
                   <p className="text-white wt-700 uppercase">
-                    Contact us for immediate
+                    For Immediate Assistance
                   </p>
-                  <h5 className="text-white wt-700">+ 22 698 698 3694</h5>
+                  <h5 className="text-white wt-700">Call Us<br/>
++91 91500 52027</h5>
                   <h5 className="text-white wt-700 mb-0">
-                    <a href="mailto:someone@example.com">info@staco.com</a>
+                    <a href="mailto:Contact@filinglab.com">Email us<br/>
+Contact@filinglab.com
+                    </a>
                   </h5>
                 </div>
-                </ScrollAnimate> */}
+                </ScrollAnimate>
               </div>
             </div>
             <div className="col-md-6">
@@ -144,51 +147,57 @@ const Consultation = () => {
               <div className="consultation-form">
                 <h5 className="consultation-form-title">Provide your details for a complete quote and professional consultation</h5>
                 <form>
-                  <label>Full Name *</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Your Name"
-                    value={formData.name}
-                    onChange={(e) => handleChange("name", e.target.value)}
-                  />
-                  {errors.name && <span className="field-error">{errors.name}</span>}
-                  <label>Phone Number *</label>
-                  <div className="phone-input-group" ref={dropdownRef}>
-                    <div className="country-code-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                      <span>{selectedCountry.flag}</span>
-                      <span>{selectedCountry.code}</span>
-                      <span className="cc-arrow">{dropdownOpen ? "▲" : "▼"}</span>
-                    </div>
-                    {dropdownOpen && (
-                      <div className="country-code-list">
-                        {COUNTRIES.map((c, i) => (
-                          <div
-                            key={i}
-                            className={`cc-option${selectedCountry.code === c.code && selectedCountry.flag === c.flag ? " selected" : ""}`}
-                            onMouseDown={() => { setSelectedCountry(c); setDropdownOpen(false); }}
-                          >
-                            {c.flag} {c.code}
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                  <div className="form-group">
+                    <label>Full Name *</label>
                     <input
-                      type="tel"
-                      placeholder="Enter Your Phone No."
-                      className="phone-number-input"
-                      value={formData.phone}
-                      onChange={(e) => handleChange("phone", e.target.value)}
+                      type="text"
+                      placeholder="Enter Your Name"
+                      value={formData.name}
+                      onChange={(e) => handleChange("name", e.target.value)}
                     />
+                    {errors.name && <span className="field-error">{errors.name}</span>}
                   </div>
-                  {errors.phone && <span className="field-error">{errors.phone}</span>}
-                  <label>Enter Your Email *</label>
-                  <input
-                    type="email"
-                    placeholder="Enter Your Email"
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                  />
-                  {errors.email && <span className="field-error">{errors.email}</span>}
+                  <div className="form-group">
+                    <label>Phone Number *</label>
+                    <div className="phone-input-group" ref={dropdownRef}>
+                      <div className="country-code-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                        <span>{selectedCountry.flag}</span>
+                        <span>{selectedCountry.code}</span>
+                        <span className="cc-arrow">{dropdownOpen ? "▲" : "▼"}</span>
+                      </div>
+                      {dropdownOpen && (
+                        <div className="country-code-list">
+                          {COUNTRIES.map((c, i) => (
+                            <div
+                              key={i}
+                              className={`cc-option${selectedCountry.code === c.code && selectedCountry.flag === c.flag ? " selected" : ""}`}
+                              onMouseDown={() => { setSelectedCountry(c); setDropdownOpen(false); }}
+                            >
+                              {c.flag} {c.code}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      <input
+                        type="tel"
+                        placeholder="Enter Your Phone No."
+                        className="phone-number-input"
+                        value={formData.phone}
+                        onChange={(e) => handleChange("phone", e.target.value)}
+                      />
+                    </div>
+                    {errors.phone && <span className="field-error">{errors.phone}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label>Enter Your Email *</label>
+                    <input
+                      type="email"
+                      placeholder="Enter Your Email"
+                      value={formData.email}
+                      onChange={(e) => handleChange("email", e.target.value)}
+                    />
+                    {errors.email && <span className="field-error">{errors.email}</span>}
+                  </div>
                   <div className="whatsapp-toggle-row">
                     <div className="whatsapp-toggle-label">
                       <span>Receive updates on WhatsApp</span>
