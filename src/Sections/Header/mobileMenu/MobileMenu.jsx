@@ -1,21 +1,75 @@
-import React, { useState } from "react";
-import Data from "../../../assets/data/header/mobileMenu";
+import React, { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import MobileMenuStyleWrapper from "./Menu.style";
+import MainLogoImg from "../../../assets/images/mainlogo/main-logo.png";
 
-//logo images
-import LogoImg2 from "../../../assets/images/logo/logo-dark.svg";
+import businessData    from "../../../assets/data/header/business";
+import licensingData   from "../../../assets/data/header/licensing";
+import taxationData    from "../../../assets/data/header/taxation";
+import complianceData  from "../../../assets/data/header/compliance";
+import financeData     from "../../../assets/data/header/finance";
+import legalData       from "../../../assets/data/header/legal";
+import advisoryData    from "../../../assets/data/header/advisory";
+import environmentData from "../../../assets/data/header/environment";
+
+const NAV_ITEMS = [
+  { title: "Business",    key: "business",    data: businessData },
+  { title: "Licensing",   key: "licensing",   data: licensingData },
+  { title: "Taxation",    key: "taxation",    data: taxationData },
+  { title: "Compliance",  key: "compliance",  data: complianceData },
+  { title: "Finance",     key: "finance",     data: financeData },
+  { title: "Legal",       key: "legal",       data: legalData },
+  { title: "Advisory",    key: "advisory",    data: advisoryData },
+  { title: "Environment", key: "environment", data: environmentData },
+];
+
+const QUICK_LINKS = [
+  { title: "About Us",       url: "/about-us" },
+  { title: "Contact Us",     url: "/contact-us" },
+  { title: "Our Services",   url: "/our-services" },
+  { title: "Blog",           url: "/blog" },
+  { title: "Privacy Policy", url: "/privacy-policy" },
+];
 
 const MobileMenu = () => {
-  const [openSubMenuIndex, setOpenSubMenuIndex] = useState(null);
-  const [openChildSubMenuIndex, setOpenChildSubMenuIndex] = useState(null);
+  const navigate = useNavigate();
+  const [openNav, setOpenNav]               = useState(null);
+  const [activeCategory, setActiveCategory] = useState({});
 
-  const handleSubmenuOpen = (index) => {
-    setOpenSubMenuIndex(openSubMenuIndex === index ? null : index);
-    setOpenChildSubMenuIndex(null);
+  // Close Bootstrap offcanvas then navigate via React Router
+  const handleNavigate = useCallback((url) => {
+    const el = document.getElementById("offcanvasStaco");
+    if (el) {
+      // Use Bootstrap's JS API to close the drawer
+      const bsOffcanvas = window.bootstrap?.Offcanvas?.getInstance(el);
+      if (bsOffcanvas) {
+        bsOffcanvas.hide();
+      } else {
+        // Fallback: remove bootstrap classes manually
+        el.classList.remove("show");
+        document.body.classList.remove("offcanvas-backdrop");
+        const backdrop = document.querySelector(".offcanvas-backdrop");
+        if (backdrop) backdrop.remove();
+        document.body.style.overflow = "";
+      }
+    }
+    navigate(url);
+  }, [navigate]);
+
+  const toggleNav = (key, data) => {
+    if (openNav === key) {
+      setOpenNav(null);
+    } else {
+      setOpenNav(key);
+      // Default to first category if not set yet
+      if (activeCategory[key] === undefined) {
+        setActiveCategory((prev) => ({ ...prev, [key]: 0 }));
+      }
+    }
   };
 
-  const handleSubmenuChildOpen = (index) => {
-    setOpenChildSubMenuIndex(openChildSubMenuIndex === index ? null : index);
+  const selectCategory = (navKey, idx) => {
+    setActiveCategory((prev) => ({ ...prev, [navKey]: idx }));
   };
 
   return (
@@ -25,104 +79,85 @@ const MobileMenu = () => {
       id="offcanvasStaco"
       aria-labelledby="offcanvasStacoLabel"
     >
-      <div className="offcanvas-header" >
-        {/* <a className="navbar-brand header-logo" href="/">
-          <img src={LogoImg2} alt="logo" />
-        </a> */}
-        <span style={{fontSize:'40px',fontWeight:'600'}}>Filing<span style={{color:"red"}}>Lab</span></span> {/** FIling Lab */}
-        <button
-          type="button"
-          className="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
+      {/* Header */}
+      <div className="offcanvas-header">
+        <div onClick={() => handleNavigate("/")} style={{ cursor: "pointer" }}>
+          <img src={MainLogoImg} alt="FilingLab" style={{ height: "40px", width: "auto" }} />
+        </div>
+        <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
       </div>
 
       <div className="offcanvas-body offcanvasStaco-body">
-        <ul className="nav-menu ">
-          {Data?.map((menuItem, mid) => {
-            let hasSubMenu = false;
-            if (menuItem.subMenus?.length > 0) {
-              hasSubMenu = true;
-            }
+
+        {/* ── Main nav with expandable mega-menus ── */}
+        <ul className="nav-menu">
+          {NAV_ITEMS.map((item) => {
+            const isOpen     = openNav === item.key;
+            const catIdx     = activeCategory[item.key] ?? 0;
+            const activeCat  = item.data[catIdx] || null;
 
             return (
-              <li key={mid} className={hasSubMenu ? "has-submenu" : ""}>
-                {hasSubMenu ? (
-                  <button
-                    className={`${hasSubMenu ? "dropdown-item" : ""} ${
-                      openSubMenuIndex === mid ? "submenu-opened" : ""
-                    }`}
-                    onClick={() => handleSubmenuOpen(mid)}
-                  >
-                    {menuItem.title}
-                  </button>
-                ) : (
-                  <a href={menuItem.url}>{menuItem.title}</a>
-                )}
+              <li key={item.key} className={`mobile-mega-item${isOpen ? " submenu-opened" : ""}`}>
+                {/* Top-level toggle button */}
+                <button
+                  className={`dropdown-item${isOpen ? " submenu-opened" : ""}`}
+                  onClick={() => toggleNav(item.key, item.data)}
+                >
+                  {item.title}
+                </button>
 
-                {menuItem.subMenus?.length > 0 && (
-                  <ul
-                    className={`sub-menu ${
-                      openSubMenuIndex === mid ? "open" : ""
-                    }`}
-                  >
-                    {menuItem.subMenus?.map((subMenuItem, sid) => {
-                      let hasSubMenuChild = false;
-                      if (subMenuItem.subMenuChilds?.length > 0) {
-                        hasSubMenuChild = true;
-                      }
-
-                      return (
-                        <li
-                          key={sid}
-                          className={
-                            hasSubMenuChild ? "submenu-has-submenu" : ""
-                          }
+                {/* Expanded megamenu panel */}
+                {isOpen && (
+                  <div className="mobile-mega-panel">
+                    {/* Left: category titles */}
+                    <div className="mobile-mega-left">
+                      {item.data.map((cat, idx) => (
+                        <div
+                          key={idx}
+                          className={`mobile-cat-title${catIdx === idx ? " active" : ""}`}
+                          onClick={() => selectCategory(item.key, idx)}
                         >
-                          {hasSubMenuChild ? (
-                            <button
-                              className={`${
-                                hasSubMenuChild ? "dropdown-item" : ""
-                              } ${
-                                openChildSubMenuIndex === sid
-                                  ? "submenu-opened"
-                                  : ""
-                              }`}
-                              onClick={() => handleSubmenuChildOpen(sid)}
-                            >
-                              {subMenuItem.title}
-                            </button>
-                          ) : (
-                            <a href={subMenuItem.url}>{subMenuItem.title}</a>
-                          )}
+                          {cat.Maintitle}
+                        </div>
+                      ))}
+                    </div>
 
-                          {subMenuItem.subMenuChilds?.length > 0 && (
-                            <ul
-                              className={`sub-menu ${
-                                openChildSubMenuIndex === sid ? "open" : ""
-                              }`}
-                            >
-                              {subMenuItem.subMenuChilds?.map(
-                                (subMenuChild, smcid) => (
-                                  <li key={smcid}>
-                                    <a href={subMenuChild.url}>
-                                      {subMenuChild.title}
-                                    </a>
-                                  </li>
-                                )
-                              )}
-                            </ul>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
+                    {/* Right: links for active category */}
+                    <div className="mobile-mega-right">
+                      {activeCat?.menuList?.map((link, lidx) => (
+                        <div
+                          key={lidx}
+                          className="mobile-mega-link"
+                          onClick={() => handleNavigate(link.url)}
+                        >
+                          {link.title}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </li>
             );
           })}
         </ul>
+
+        {/* Divider */}
+        <hr style={{ borderColor: "rgba(0,0,0,0.1)", margin: "16px 0" }} />
+
+        {/* Quick links */}
+        <ul className="nav-menu mobile-quick-links">
+          {QUICK_LINKS.map((item) => (
+            <li key={item.title}>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => handleNavigate(item.url)}
+              >
+                {item.title}
+              </div>
+            </li>
+          ))}
+        </ul>
+
       </div>
     </MobileMenuStyleWrapper>
   );

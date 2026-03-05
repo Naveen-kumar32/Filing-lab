@@ -1,3 +1,58 @@
+/* ── Tooltip Bubble ── */
+.chatbot-tooltip {
+  position: fixed;
+  bottom: 14px;
+  right: 148px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  padding: 12px 36px 12px 14px;
+  min-width: 190px;
+  max-width: 220px;
+  z-index: 9999;
+  animation: tooltipFadeIn 0.35s ease;
+}
+.chatbot-tooltip::after {
+  content: "";
+  position: absolute;
+  right: -9px;
+  bottom: 18px;
+  border-width: 8px 0 8px 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff;
+  filter: drop-shadow(2px 0 2px rgba(0,0,0,0.07));
+}
+.chatbot-tooltip p {
+  margin: 0 0 4px;
+  font-size: 13.5px;
+  color: #222;
+  line-height: 1.45;
+}
+.chatbot-tooltip p:last-child {
+  margin-bottom: 0;
+}
+.chatbot-tooltip-close {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: #888;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+.chatbot-tooltip-close:hover {
+  color: #ff6600;
+}
+@keyframes tooltipFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ── Toggle Button ── */
 .chatbot-toggle {
   position: fixed;
@@ -205,7 +260,7 @@
   margin-top: 12px;
   padding: 10px;
   background: linear-gradient(90deg, #ff6600 0%, #ff9a42 100%);
-  color: #fff;
+  color: #fff !important;
   border: none;
   border-radius: 20px;
   font-size: 14px;
@@ -215,6 +270,7 @@
 }
 .chat-submit-btn:hover {
   opacity: 0.9;
+  color: #fff !important;
 }
 
 /* ── Typing indicator ── */

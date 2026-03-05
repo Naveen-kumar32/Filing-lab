@@ -1,5 +1,5 @@
 import ChatbotBannerStyle from "./ChatbotBanner.style";
-import BannerVideo from "../../../assets/videos/filinglab-hero-banner.mp4";
+import BannerVideo from "../../../assets/videos/filinglab-hero-banner-1.mp4";
 import ScrollAnimate from "../../../Components/ScrollAnimate";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { useState, useEffect } from "react";

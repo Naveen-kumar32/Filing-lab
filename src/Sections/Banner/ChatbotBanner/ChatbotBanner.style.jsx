@@ -42,6 +42,11 @@ const ChatbotBannerStyle = styled.section`
       }
     }
 
+    .cd-headline.loading-bar .cd-words-wrapper::after,
+    .cd-headline.loading-bar .cd-words-wrapper.is-loading::after {
+      background: #ffffff;
+    }
+
     .chatbot-banner-text {
       position: relative;
       z-index: 1;

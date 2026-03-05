@@ -30,6 +30,10 @@ const MobileMenuStyleWrapper = styled.div`
 
     li {
       overflow: hidden;
+
+      &.mobile-mega-item {
+        overflow: visible;
+      }
     }
 
     li a,
@@ -182,6 +186,81 @@ const MobileMenuStyleWrapper = styled.div`
   ul ul li,
   li:hover > ul > li {
     height: auto;
+  }
+
+  /* ── Mobile mega-panel (mirrors desktop megamenu) ── */
+  .mobile-mega-item {
+    overflow: visible !important; /* allow panel to grow */
+  }
+
+  .mobile-mega-panel {
+    display: flex;
+    gap: 0;
+    margin: 4px 0 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid ${({ theme }) => theme.colors.blackColor}14;
+    background: ${({ theme }) => theme.colors.white || "#fff"};
+  }
+
+  /* Left: category list */
+  .mobile-mega-left {
+    flex: 0 0 38%;
+    background: #f5f7fa;
+    padding: 6px 0;
+    border-right: 1px solid ${({ theme }) => theme.colors.blackColor}14;
+    overflow-y: auto;
+    max-height: 52vh;
+
+    .mobile-cat-title {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: ${({ theme }) => theme.colors.title};
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+      line-height: 1.35;
+
+      &:hover {
+        background: #e8f0fe;
+        color: #0086e5;
+        border-left-color: #0086e5;
+      }
+
+      &.active {
+        background: #e8f0fe;
+        color: #0086e5;
+        border-left-color: #0086e5;
+      }
+    }
+  }
+
+  /* Right: link list for selected category */
+  .mobile-mega-right {
+    flex: 1;
+    padding: 8px 4px;
+    overflow-y: auto;
+    max-height: 52vh;
+    display: flex;
+    flex-direction: column;
+
+    .mobile-mega-link {
+      display: block;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: ${({ theme }) => theme.colors.textColor};
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      line-height: 1.35;
+
+      &:hover,
+      &.active {
+        background: #e8f0fe;
+        color: #0086e5;
+      }
+    }
   }
 `;
 

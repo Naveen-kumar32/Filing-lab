@@ -6,23 +6,41 @@ const PHASES = { ONE: 1, TWO: 2, THREE: 3 };
 
 // Greeting lines to type out one by one
 const GREETING_LINES = [
-  { text: "Hi, I am Uma.", bold: [] },
-  { text: "Welcome to FilingLab 👋", bold: ["FilingLab"] },
-  { text: "How may I assist you?", bold: [] },
+  { text: "Hi, I am Uma." },
+  { text: "Welcome to FilingLab" },
+  { text: "How may I assist you?" },
+];
+
+// Confirmation lines for Phase 3
+const CONFIRMATION_LINES = [
+  { text: "Thank you for sharing the details!" },
+  { text: "Our FilingLab expert will contact you shortly to guide you further." },
+  { text: "If urgent, you may also call us directly at:" },
+  { text: "+91 91500 52027" },
+  { text: "We look forward to assisting you." },
 ];
 
 const VAChatbot = () => {
   const [open, setOpen] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
   const [phase, setPhase] = useState(PHASES.ONE);
   const [selectedTopic, setSelectedTopic] = useState("");
   const [form, setForm] = useState({ name: "", mobile: "", email: "", description: "" });
   const [errors, setErrors] = useState({});
-  // Typing animation state
-  const [typedLines, setTypedLines] = useState([]);   // fully typed lines shown
-  const [currentLine, setCurrentLine] = useState("");  // chars being typed right now
-  const [lineIndex, setLineIndex] = useState(0);       // which greeting line we're on
-  const [showDots, setShowDots] = useState(false);     // show "..." before typing starts
-  const [greetingDone, setGreetingDone] = useState(false); // all lines done
+  // Typing animation state — Phase 1
+  const [typedLines, setTypedLines] = useState([]);
+  const [currentLine, setCurrentLine] = useState("");
+  const [lineIndex, setLineIndex] = useState(0);
+  const [showDots, setShowDots] = useState(false);
+  const [greetingDone, setGreetingDone] = useState(false);
+
+  // Typing animation state — Phase 3
+  const [p3TypedLines, setP3TypedLines] = useState([]);
+  const [p3CurrentLine, setP3CurrentLine] = useState("");
+  const [p3LineIndex, setP3LineIndex] = useState(0);
+  const [p3ShowDots, setP3ShowDots] = useState(false);
+  const [p3Done, setP3Done] = useState(false);
+
   const typingTimersRef = useRef([]);
   const chatEndRef = useRef(null);
   const chatTopRef = useRef(null);
@@ -33,7 +51,6 @@ const VAChatbot = () => {
   // Reset and start typing animation whenever chatbot opens on phase 1
   useEffect(() => {
     if (!open || phase !== PHASES.ONE) return;
-    // Clear any previous timers
     typingTimersRef.current.forEach(clearTimeout);
     typingTimersRef.current = [];
     setTypedLines([]);
@@ -43,7 +60,19 @@ const VAChatbot = () => {
     setGreetingDone(false);
   }, [open, phase]);
 
-  // Drive the typewriter: show dots → type chars → move to next line
+  // Reset Phase 3 typing when entering phase 3
+  useEffect(() => {
+    if (phase !== PHASES.THREE) return;
+    typingTimersRef.current.forEach(clearTimeout);
+    typingTimersRef.current = [];
+    setP3TypedLines([]);
+    setP3CurrentLine("");
+    setP3LineIndex(0);
+    setP3ShowDots(false);
+    setP3Done(false);
+  }, [phase]);
+
+  // Drive Phase 1 typewriter: show dots → type chars → move to next line
   useEffect(() => {
     if (!open || phase !== PHASES.ONE || greetingDone) return;
     if (lineIndex >= GREETING_LINES.length) {
@@ -94,6 +123,55 @@ const VAChatbot = () => {
       typingTimersRef.current = [];
     };
   }, [lineIndex, open, phase, greetingDone]);
+
+  // Drive Phase 3 typewriter: same pattern as Phase 1
+  useEffect(() => {
+    if (phase !== PHASES.THREE || p3Done) return;
+    if (p3LineIndex >= CONFIRMATION_LINES.length) {
+      setP3Done(true);
+      setP3ShowDots(false);
+      return;
+    }
+
+    const line = CONFIRMATION_LINES[p3LineIndex].text;
+    let charIdx = 0;
+
+    const dotsTimer = setTimeout(() => {
+      setP3ShowDots(true);
+
+      const startTypingTimer = setTimeout(() => {
+        setP3ShowDots(false);
+
+        const typeNext = () => {
+          if (charIdx < line.length) {
+            const captured = charIdx;
+            charIdx++;
+            const t = setTimeout(() => {
+              setP3CurrentLine(line.slice(0, captured + 1));
+              typeNext();
+            }, 38);
+            typingTimersRef.current.push(t);
+          } else {
+            const commitTimer = setTimeout(() => {
+              setP3TypedLines((prev) => [...prev, line]);
+              setP3CurrentLine("");
+              setP3LineIndex((prev) => prev + 1);
+            }, 120);
+            typingTimersRef.current.push(commitTimer);
+          }
+        };
+        typeNext();
+      }, 500);
+      typingTimersRef.current.push(startTypingTimer);
+    }, p3LineIndex === 0 ? 400 : 200);
+
+    typingTimersRef.current.push(dotsTimer);
+
+    return () => {
+      typingTimersRef.current.forEach(clearTimeout);
+      typingTimersRef.current = [];
+    };
+  }, [p3LineIndex, phase, p3Done]);
 
   // Close when clicking outside the chatbot widget
   useEffect(() => {
@@ -179,7 +257,18 @@ const VAChatbot = () => {
 
   return (
     <div ref={chatbotRef}>
-      <div className="chatbot-toggle" onClick={() => setOpen(!open)}>
+      {showTooltip && !open && (
+        <div className="chatbot-tooltip">
+          <button
+            className="chatbot-tooltip-close"
+            onClick={(e) => { e.stopPropagation(); setShowTooltip(false); }}
+            aria-label="Close"
+          >✕</button>
+          <p>Hi! I'm Uma</p>
+          <p>Let me clear all your queries!</p>
+        </div>
+      )}
+      <div className="chatbot-toggle" onClick={() => { setOpen(!open); setShowTooltip(false); }}>
         <img src={chatbot} alt="Chatbot" />
       </div>
 
@@ -205,11 +294,7 @@ const VAChatbot = () => {
                 {/* Already-typed lines — each in its own bubble */}
                 {typedLines.map((line, i) => (
                   <div key={i} className="bot-msg bot-msg-line">
-                    <p dangerouslySetInnerHTML={{
-                      __html: line
-                        .replace("Uma", "<strong>Uma</strong>")
-                        .replace("FilingLab", "<strong>FilingLab</strong>")
-                    }} />
+                    <p>{line}</p>
                   </div>
                 ))}
 
@@ -271,14 +356,27 @@ const VAChatbot = () => {
             {/* ── PHASE 3: Confirmation ── */}
             {phase === PHASES.THREE && (
               <>
-                <div className="bot-msg">
-                  <p>✅ <strong>Thank you for sharing the details!</strong></p>
-                  <p>Our FilingLab expert will contact you shortly to guide you further.</p>
-                  <p>If urgent, you may also call us directly at:</p>
-                  <p className="chat-phone">📞 <strong>+91 91500 52027</strong></p>
-                  <p>We look forward to assisting you.</p>
-                </div>
-                <button className="chat-option" onClick={handleRestart}>Start Over</button>
+                {/* Already-typed confirmation lines */}
+                {p3TypedLines.map((line, i) => (
+                  <div key={i} className="bot-msg bot-msg-line">
+                    <p>{line}</p>
+                  </div>
+                ))}
+
+                {/* Currently typing line or dots */}
+                {!p3Done && (
+                  <div className="bot-msg bot-msg-line">
+                    {p3ShowDots
+                      ? <span className="typing-dots"><span /><span /><span /></span>
+                      : <p>{p3CurrentLine}<span className="typing-cursor">|</span></p>
+                    }
+                  </div>
+                )}
+
+                {/* Start Over only after all lines typed */}
+                {p3Done && (
+                  <button className="chat-option" onClick={handleRestart}>Start Over</button>
+                )}
               </>
             )}
 
