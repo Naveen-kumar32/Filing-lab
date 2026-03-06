@@ -30,13 +30,33 @@ const ConsultationStyleWrapper = styled.section`
   .consultation-left {
     width: 100%;
     height: 100%;
-    padding: 82px 40px;
+    padding: 48px 40px;
     background: linear-gradient(90deg, #ff6600 0%, #ff9a42 100%);
     border-radius: 30px 0px 0px 0px;
   }
 
   .consultation-img {
-    margin-bottom: 46px;
+    margin-bottom: 24px;
+  }
+
+  .consultation-text {
+    p {
+      font-size: 15px !important;
+      margin-bottom: 14px !important;
+    }
+    h5 {
+      font-size: 20px !important;
+      font-family: ${({ theme }) => theme.fonts.dmSans};
+      line-height: 1.4 !important;
+      margin-bottom: 20px !important;
+      a {
+        color: #fff !important;
+        text-decoration: none;
+      }
+    }
+    h5.mb-0 {
+      margin-bottom: 0 !important;
+    }
   }
   .consultation-form {
     padding: 60px 60px 60px 30px;
@@ -51,7 +71,7 @@ const ConsultationStyleWrapper = styled.section`
       line-height: 1.5;
       color: ${({ theme }) => theme.colors.title};
       margin-bottom: 48px;
-      margin-top: 20px;
+      margin-top: 30px;
       max-width: 320px;
       text-align: center;
     }
@@ -124,8 +144,8 @@ const ConsultationStyleWrapper = styled.section`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 8px;
+    margin-top: 0px;
+    margin-bottom: 28px;
 
     .whatsapp-toggle-label {
       display: flex;

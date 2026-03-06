@@ -145,7 +145,7 @@ Contact@filinglab.com
             <div className="col-md-6">
               <ScrollAnimate delay={300}>
               <div className="consultation-form">
-                <h5 className="consultation-form-title">Provide your details for a complete quote and professional consultation</h5>
+                <h5 className="consultation-form-title" style={{color:"#ed740a"}}>Provide your details for a complete quote and professional consultation</h5>
                 <form>
                   <div className="form-group">
                     <label>Full Name *</label>

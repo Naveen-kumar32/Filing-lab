@@ -166,6 +166,14 @@ const PowerfullTemplateStyle = styled.section`
           flex-shrink: 0;
           margin-top: 2px;
         }
+
+        .check-icon {
+          width: 22px;
+          height: 22px;
+          flex-shrink: 0;
+          margin-top: 5px;
+          object-fit: contain;
+        }
       }
     }
 

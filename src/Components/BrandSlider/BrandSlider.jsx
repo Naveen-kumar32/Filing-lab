@@ -12,25 +12,16 @@ import ScrollAnimate from "../ScrollAnimate";
 
 const BrandSlider = ({ titleClass, sliderClass }) => {
   const brandImages = [
-    // SliderImg1,
     SliderImg2,
     SliderImg3,
     SliderImg4,
     SliderImg5,
     SliderImg6,
-    // SliderImg7,
     SliderImg8,
-    // SliderImg9,
-    // SliderImg1,
-    SliderImg2,
-    SliderImg3,
-    SliderImg4,
-    SliderImg5,
-    SliderImg6,
-    // SliderImg7,
-    SliderImg8,
-    // SliderImg9,
   ];
+
+  // Triplicate so the loop is seamless across all viewport widths
+  const loopedImages = [...brandImages, ...brandImages, ...brandImages];
 
   return (
     <BrandSliderStyleWrapper className="brands-section">
@@ -45,7 +36,7 @@ const BrandSlider = ({ titleClass, sliderClass }) => {
             <ScrollAnimate delay={200}>
               <div className={`brands-slider ${sliderClass}`}>
                 <div className="brands-slider-container">
-                  {brandImages.map((src, index) => (
+                  {loopedImages.map((src, index) => (
                     <div key={index} className="slider-item">
                       <img src={src} alt={`slider-img-${index}`} />
                     </div>

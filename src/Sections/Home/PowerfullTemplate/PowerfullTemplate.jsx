@@ -11,6 +11,7 @@ import templateImg4 from "../../../assets/images/animic/4.png";
 import monitorIcon from "../../../assets/images/icons/monitor_icon.svg";
 import messageIcon from "../../../assets/images/icons/message_icon.svg";
 import documentIcon from "../../../assets/images/icons/document_icon.svg";
+import checkmark from "../../../assets/images/checkmark/3.png";
 import ScrollAnimate from "../../../Components/ScrollAnimate";
 import Consultation from "../Consultation/Consultation";
 
@@ -293,16 +294,16 @@ make payment, and receive confirmation with ongoing support.</h6>
                 <div className="card-left">
                   <ul className="points-list">
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
                     </li>
                   </ul>
                   <button className="cta-button" onClick={handleOpenModal}>Start Application</button>
@@ -329,16 +330,16 @@ make payment, and receive confirmation with ongoing support.</h6>
                 <div className="card-left">
                   <ul className="points-list">
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
                     </li>
                   </ul>
                   <button className="cta-button" onClick={handleOpenModal}>Submit Details</button>
@@ -365,16 +366,16 @@ make payment, and receive confirmation with ongoing support.</h6>
                 <div className="card-left">
                   <ul className="points-list">
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Review transparent service pricing
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Review transparent service pricing
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Select your preferred payment method
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Select your preferred payment method
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Complete payment through secure gateway
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Complete payment through secure gateway
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Receive instant invoice and confirmation
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Receive instant invoice and confirmation
                     </li>
                   </ul>
                   <button className="cta-button" onClick={handleOpenModal}>Proceed to Payment</button>
@@ -401,16 +402,16 @@ make payment, and receive confirmation with ongoing support.</h6>
                 <div className="card-left">
                   <ul className="points-list">
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Provide complete business information
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Enter director or personal details
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Upload required documents securely
                     </li>
                     <li>
-                      ✔&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
+                      <img src={checkmark} alt="✔" className="check-icon" />&nbsp;&nbsp;&nbsp;&nbsp;Verify and confirm submission
                     </li>
                   </ul>
                   <button className="cta-button" onClick={handleOpenModal}>Track Status</button>
