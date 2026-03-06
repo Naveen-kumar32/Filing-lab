@@ -45,6 +45,7 @@ const ChatbotBannerStyle = styled.section`
     .cd-headline.loading-bar .cd-words-wrapper::after,
     .cd-headline.loading-bar .cd-words-wrapper.is-loading::after {
       background: #ffffff;
+      
     }
 
     .chatbot-banner-text {
@@ -69,7 +70,7 @@ const ChatbotBannerStyle = styled.section`
             width: 100%;
             position: absolute;
             left: 0px;
-            bottom: 0px;
+            bottom: -6px;
           }
 
           img {
@@ -173,6 +174,7 @@ const ChatbotBannerStyle = styled.section`
     flex: 1 1 50%;
     min-width: 0;
     position: relative;
+    padding-right: 10px;
   }
 
   .banner-bg-video {
@@ -181,6 +183,7 @@ const ChatbotBannerStyle = styled.section`
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: fill;
+    border-radius: 20px;
   }
 
   .chatbot-banner-video-overlay {
@@ -190,12 +193,7 @@ const ChatbotBannerStyle = styled.section`
     width: 100%;
     height: 100%;
     z-index: 2;
-    background: linear-gradient(
-      90deg,
-      rgba(4, 23, 131, 0.85) 0%,
-      rgba(4, 23, 131, 0.3) 50%,
-      rgba(4, 23, 131, 0) 100%
-    );
+    background: none;
     display: flex;
     align-items: center;
     justify-content: center;

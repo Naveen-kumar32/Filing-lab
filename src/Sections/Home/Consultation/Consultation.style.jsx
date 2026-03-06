@@ -41,7 +41,7 @@ const ConsultationStyleWrapper = styled.section`
 
   .consultation-text {
     p {
-      font-size: 15px !important;
+      font-size: 14px !important;
       margin-bottom: 14px !important;
     }
     h5 {

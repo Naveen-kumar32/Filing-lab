@@ -75,7 +75,7 @@ const ChatbotBanner = () => {
               <div className="cd-intro m-0 uig-animate-style">
                 <h1 className="cd-headline loading-bar banner-title">
                   A Reliable Partner for Complete Business <br />
-                  <span className="cd-words-wrapper" style={{ color: "#ff6600" }}>
+                  <span className="cd-words-wrapper" style={{ color: "#ff6600", paddingBottom: "10px" }}>
                     {headlines.map((headline, i) => (
                       <b key={i} className={i === visibleIndex ? "is-visible" : "is-hidden"}>
                         {headline}

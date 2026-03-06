@@ -642,7 +642,7 @@ html.dark-scheme body h6 {
     padding: 0.2em 0;
 }
 .cd-headline.loading-bar .cd-words-wrapper {
-    overflow: hidden;
+    overflow: visible;
     vertical-align: top;
 }
 .cd-headline.loading-bar .cd-words-wrapper::after {
@@ -650,7 +650,7 @@ html.dark-scheme body h6 {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -6px;
     height: 3px;
     width: 0;
     background: #0096a7;
@@ -669,7 +669,7 @@ html.dark-scheme body h6 {
     &::after{
       position: absolute;
       content: "";
-      bottom: 0;
+      bottom: -7px;
       left: 0;
       height: 8px;
       background: ${({ theme }) => theme.colors.primary6};

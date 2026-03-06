@@ -34,7 +34,7 @@ const Home = () => {
         <UsefulFeature />
         <BusinessChoose />
         <PowerfullTemplate />
-        <TeamBestPricing />
+        {/* <TeamBestPricing /> */}
         <FinanceLetsTalk /> 
         <ParallaxComponent parallaxTextClass="v6" />
         

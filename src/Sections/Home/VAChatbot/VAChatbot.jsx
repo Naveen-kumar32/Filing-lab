@@ -265,7 +265,7 @@ const VAChatbot = () => {
             aria-label="Close"
           >✕</button>
           <p>Hi! I'm Uma</p>
-          <p>Let me clear all your queries!</p>
+          <p>How can I help you?</p>
         </div>
       )}
       <div className="chatbot-toggle" onClick={() => { setOpen(!open); setShowTooltip(false); }}>
