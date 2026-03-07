@@ -44,11 +44,13 @@ const ConsultationStyleWrapper = styled.section`
       font-size: 14px !important;
       margin-bottom: 14px !important;
     }
-    h5 {
+    h5, h5.mb-0 {
       font-size: 20px !important;
-      font-family: ${({ theme }) => theme.fonts.dmSans};
+      font-weight: 700 !important;
+      font-family: ${({ theme }) => theme.fonts.dmSans} !important;
       line-height: 1.4 !important;
       margin-bottom: 20px !important;
+      color: #fff !important;
       a {
         color: #fff !important;
         text-decoration: none;
@@ -57,6 +59,13 @@ const ConsultationStyleWrapper = styled.section`
     h5.mb-0 {
       margin-bottom: 0 !important;
     }
+  }
+
+  .consultation-left .consultation-text h5 {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    line-height: 1.4 !important;
   }
   .consultation-form {
     padding: 60px 60px 60px 30px;
