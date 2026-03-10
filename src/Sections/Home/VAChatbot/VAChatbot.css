@@ -46,7 +46,7 @@
   transition: color 0.2s;
 }
 .chatbot-tooltip-close:hover {
-  color: #ff6600;
+  color: #ed740a;
 }
 @keyframes tooltipFadeIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -92,7 +92,7 @@
 
 /* ── Header ── */
 .chatbot-header {
-  background: linear-gradient(90deg, #ff6600 0%, #ff9a42 100%);
+  background: linear-gradient(90deg, #ed740a 0%, #f5a04a 100%);
   color: #fff;
   padding: 12px 14px;
   border-radius: 18px 18px 0 0;
@@ -164,7 +164,7 @@
 
 /* ── User Message ── */
 .user-msg {
-  background: #ff6600;
+  background: #ed740a;
   color: #fff;
   padding: 8px 12px;
   border-radius: 12px;
@@ -175,10 +175,10 @@
 
 /* ── Back Button ── */
 .chat-back-btn {
-  background: #fff4ee;
+  background: #fdf0e6;
   border: none;
   border-radius: 20px;
-  color: #ff6600;
+  color: #ed740a;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -191,7 +191,7 @@
   transition: background 0.2s;
 }
 .chat-back-btn:hover {
-  background: #ffe0cc;
+  background: #fde0c0;
 }
 
 /* ── Options ── */
@@ -200,7 +200,7 @@
   padding: 7px 12px;
   margin-bottom: 4px;
   border-radius: 20px;
-  border: 1.5px solid #ff6600;
+  border: 1.5px solid #ed740a;
   background: #fff;
   cursor: pointer;
   font-size: 12px;
@@ -209,7 +209,7 @@
   color: #333;
 }
 .chat-option:hover {
-  background: linear-gradient(90deg, #ff6600 0%, #ff9a42 100%);
+  background: linear-gradient(90deg, #ed740a 0%, #f5a04a 100%);
   color: #fff;
   border-color: transparent;
 }
@@ -243,7 +243,7 @@
 }
 .chat-form input:focus,
 .chat-form textarea:focus {
-  border-color: #ff6600;
+  border-color: #ed740a;
 }
 .chat-form textarea {
   resize: none;
@@ -259,7 +259,7 @@
 .chat-submit-btn {
   margin-top: 12px;
   padding: 10px;
-  background: linear-gradient(90deg, #ff6600 0%, #ff9a42 100%);
+  background: linear-gradient(90deg, #ed740a 0%, #f5a04a 100%);
   color: #fff !important;
   border: none;
   border-radius: 20px;
@@ -295,7 +295,7 @@
 .typing-cursor {
   display: inline-block;
   width: 2px;
-  color: #ff6600;
+  color: #ed740a;
   animation: blink-cursor 0.7s step-end infinite;
   margin-left: 1px;
   font-weight: 300;
@@ -316,7 +316,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #ff6600;
+  background: #ed740a;
   animation: dot-bounce 1.2s infinite ease-in-out;
 }
 .typing-dots span:nth-child(1) { animation-delay: 0s; }

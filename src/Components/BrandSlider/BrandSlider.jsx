@@ -1,4 +1,5 @@
 import BrandSliderStyleWrapper from "./BrandSlider.style";
+import SectionTitle from "../SectionTitle/SectionTitle";
 // import SliderImg1 from "../../assets/images/brands/bisways.png";
 import SliderImg2 from "../../assets/images/brands/bitrix.png";
 import SliderImg3 from "../../assets/images/brands/paybooks.png";
@@ -30,7 +31,13 @@ const BrandSlider = ({ titleClass, sliderClass }) => {
           <div className="col-md-12">
             <ScrollAnimate delay={200}>
               <div className={titleClass}>
-                <h2 style={{color:"#ff6b00"}}>Trusted by Businesses Nationwide</h2>
+                <SectionTitle
+                  title=""
+                  subtitle="Trusted Nationwide"
+                  parentClass="text-center mb-0"
+                  titleClass="mb-0"
+                  subtitleStyle={{ color: "#ed740a" }}
+                />
               </div>
             </ScrollAnimate>
             <ScrollAnimate delay={200}>

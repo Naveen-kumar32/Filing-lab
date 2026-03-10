@@ -98,7 +98,7 @@ const UsefulFeature = () => {
                   parentClass="text-center mb-0"
                   titleClass="mb-0"
                   titleStyle={{ fontSize: "32px" }}
-                  subtitleStyle={{ color: "#ff6b00" }}
+                  subtitleStyle={{ color: "#ed740a" }}                  
                 />
               </ScrollAnimate>
               {/* <div className="useful-feature-header-right">

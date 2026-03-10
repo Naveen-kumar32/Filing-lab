@@ -265,7 +265,7 @@ function PowerfullTemplate() {
                 lineHeight: "45px"
               }}
               subtitleStyle={{
-                color: "#ff6b00"
+                color: "#ed740a"
               }}
             />
             <h6 className="mb-0" style={{ marginTop: "12px" }}>

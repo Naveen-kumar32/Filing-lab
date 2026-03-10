@@ -3,7 +3,7 @@ import styled from "styled-components";
 const FinanceLetsTalkStyle = styled.section`
   margin: 140px 0px;
   .lets-talk-content {
-    background: linear-gradient(135deg, #cc4400 0%, #ff6600 50%, #ff9a42 100%);
+    background: linear-gradient(135deg, #c45e00 0%, #ed740a 50%, #f5a04a 100%);
     border-radius: 30px;
     padding: 0px 70px;
     overflow: hidden;

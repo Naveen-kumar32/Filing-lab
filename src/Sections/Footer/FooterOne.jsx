@@ -239,7 +239,7 @@ const FooterOne = () => {
               <div className="col-md-5 order-md-1 order-2">
                 <div className="footer-copyright">
 <p className="mb-0">
-  Copyright © 2026 <span style={{color:"#e6ac41"}}>Filinglab</span>. Designed by{" "}
+  Copyright © 2026 <span style={{color:"#ed740a"}}>Filinglab</span>. Designed by{" "}
   <a href="https://ligiotec.com/" target='blank' className="designer-link">Ligiotec</a>. All rights reserved.
 </p>
                 </div>

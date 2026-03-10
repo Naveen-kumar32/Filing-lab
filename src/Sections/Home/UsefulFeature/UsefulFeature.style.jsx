@@ -31,7 +31,7 @@ const UsefulFeatureStyleWrapper = styled.section`
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #ff9a42;
+            border: 1px solid #ed740a;
             border-radius: 26px;
             background-color: transparent;
             text-transform: capitalize;
@@ -64,7 +64,7 @@ const UsefulFeatureStyleWrapper = styled.section`
             left: 0;
             width: 0%;
             height: 100%;
-            background-color: #ff9a42;
+            background-color: #ed740a;
             opacity: 1;
             animation: tabAnimate 6000ms linear forwards;
         }
@@ -131,7 +131,7 @@ const UsefulFeatureStyleWrapper = styled.section`
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: #ff9a42;
+            color: #ed740a;
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;

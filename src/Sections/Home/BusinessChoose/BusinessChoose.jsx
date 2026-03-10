@@ -7,6 +7,7 @@ import whyChoose1 from "../../../assets/images/why-choose-us/1.svg";
 import whyChoose2 from "../../../assets/images/why-choose-us/2.svg";
 import whyChoose3 from "../../../assets/images/why-choose-us/3.svg";
 import whyChoose4 from "../../../assets/images/why-choose-us/4.svg";
+import checkmark6 from "../../../assets/images/checkmark/6.png";
 import ScrollAnimate from "../../../Components/ScrollAnimate";
 
 const TABS = [
@@ -68,7 +69,7 @@ const BusinessChoose = () => {
                 lineHeight: "45px"
               }}
               subtitleStyle={{
-                color: "#ff6b00"
+                color: "#ed740a"
               }}
             />
             </ScrollAnimate>
@@ -90,7 +91,7 @@ const BusinessChoose = () => {
                     onClick={() => handleTabClick(i)}
                   >
                     <span>{tab.num}</span>{" "}
-                    <span className="text" style={{ color: "orange" }}>{tab.label}</span>
+                    <span className="text" style={{ color: "#ed740a" }}>{tab.label}</span>
                     {activeTab === i && (
                       <span key={activeTab} className="tab-progress-line" />
                     )}
@@ -118,19 +119,19 @@ compliances are completed correctly and without errors.
                   <ul className="list">
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Multi-level review before submission</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Compliance aligned with latest regulations</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Reduced risk of notices and penalties</p>
                       </div>
                     </li>
@@ -155,19 +156,19 @@ compliance gaps.
                   <ul className="list">
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Proactive due-date tracking</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Timely reminders and updates</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>No last-minute rush</p>
                       </div>
                     </li>
@@ -192,19 +193,19 @@ decisions with confidence.
                   <ul className="list">
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Clear explanations without legal jargon</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Dedicated support team</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Practical, business-focused advice</p>
                       </div>
                     </li>
@@ -228,19 +229,19 @@ to final submission, keeping you informed throughout.
                   <ul className="list">
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Clear process flow</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>Regular status updates</p>
                       </div>
                     </li>
                     <li>
                       <div className="list-item">
-                        <span className="iconify" data-icon="bi:check-lg" />
+                        <img src={checkmark6} alt="✔" className="check-icon" />
                         <p>No hidden steps or confusion</p>
                       </div>
                     </li>

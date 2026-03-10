@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BgImg from "../../../assets/images/chatbot/chatbot-banner-grident.svg";
 
 const ChatbotBannerStyle = styled.section`
-  background: #0d333f;
+  background: #002145;
   padding-top: 90px;
   position: relative;
   width: 100%;
@@ -12,12 +12,8 @@ const ChatbotBannerStyle = styled.section`
   &.chatbot-banner {
     position: relative;
     z-index: 1;
-    // background: ${({ theme }) => theme.colors.chatbotPrimary} !important;
-    background-color: rgba(4, 23, 131, 1) !important;
-    background: url(${BgImg});
-    background-size: cover;
-    background-position: left center;
-    background-repeat: no-repeat;
+    background-color: #002145 !important;
+    background: #002145;
 
     .hero-content-list {
       display: flex;
@@ -174,7 +170,7 @@ const ChatbotBannerStyle = styled.section`
     flex: 1 1 50%;
     min-width: 0;
     position: relative;
-    padding-right: 10px;
+    padding: 10px 10px 10px 0;
   }
 
   .banner-bg-video {
@@ -246,7 +242,7 @@ const ChatbotBannerStyle = styled.section`
   }
 
   .arrow-icon {
-    color: #ff7a00;
+    color: #ed740a;
     font-size: 22px;
     flex-shrink: 0;
     animation: arrowBounce 1.2s infinite ease-in-out;
@@ -361,6 +357,7 @@ const ChatbotBannerStyle = styled.section`
     .banner-right {
       flex: none;
       width: 100%;
+      padding: 0 16px 20px 16px;
     }
     .v8banner-text {
       width: 100%;

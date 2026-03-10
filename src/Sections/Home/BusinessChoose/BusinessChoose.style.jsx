@@ -38,8 +38,7 @@ const BusinessChooseStyle = styled.section`
         left: 0;
         height: 4px;
         width: 0%;
-        background: #ff9a42;
-        border-radius: 1px;
+        background: #ed740a;
         animation: lineProgress 6000ms linear forwards;
       }
 
@@ -52,7 +51,7 @@ const BusinessChooseStyle = styled.section`
           opacity: 1;
           span {
             &:nth-child(1) {
-              color: #ff9a42;
+              color: #ed740a;
             }
           }
         }
@@ -85,11 +84,11 @@ const BusinessChooseStyle = styled.section`
     border: none;
     cursor: pointer;
     span {
-      color: #ff9a42;
+      color: #ed740a;
       transition: 0.3s;
       
       &:nth-child(1) {
-        color: #ff9a42;
+        color: #ed740a;
       }
     }
 
@@ -100,7 +99,7 @@ const BusinessChooseStyle = styled.section`
 
     &.active {
       span {
-        color: #ff9a42;
+        color: #ed740a;
       }
 
       .text,
@@ -152,6 +151,12 @@ const BusinessChooseStyle = styled.section`
           color: ${({ theme }) => theme.colors.iconColor};
           position: relative;
           top: -5px;
+        }
+        .check-icon {
+          width: 20px;
+          height: 20px;
+          flex-shrink: 0;
+          object-fit: contain;
         }
         p {
           margin-top: 0;
@@ -221,11 +226,11 @@ const BusinessChooseStyle = styled.section`
       background: transparent;
     }
     progress::-webkit-progress-value {
-      background: #ff9a42;
+      background: #ed740a;
       background-attachment: fixed;
     }
     progress::-moz-progress-bar {
-      background: #ff9a42;
+      background: #ed740a;
       background-attachment: fixed;
     }
   }

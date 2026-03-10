@@ -26,7 +26,7 @@ const ParallaxStyleWrapper = styled.section`
   }
   .statistics-text {
     & h2 {
-      color: ${({ theme }) => theme.colors.primary};
+      color: #ed740a;
     }
     & p {
       font-size: 18px;
@@ -37,7 +37,7 @@ const ParallaxStyleWrapper = styled.section`
     &.v6 {
       h2,
       p {
-        color: ${({ theme }) => theme.colors.v6templateColor};
+        color: #ed740a;
       }
     }
   }

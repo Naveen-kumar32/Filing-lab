@@ -31,7 +31,7 @@ const ConsultationStyleWrapper = styled.section`
     width: 100%;
     height: 100%;
     padding: 48px 40px;
-    background: linear-gradient(90deg, #ff6600 0%, #ff9a42 100%);
+    background: linear-gradient(90deg, #ed740a 0%, #f5a04a 100%);
     border-radius: 30px 0px 0px 0px;
   }
 
@@ -111,15 +111,44 @@ const ConsultationStyleWrapper = styled.section`
         a {
           color: #999999;
           text-decoration: underline;
-          &:hover { color: #ff6600; }
+          &:hover { color: #ed740a; }
         }
       }
 
+      .form-group {
+        position: relative;
+      }
+
       .field-error {
-        display: block;
-        font-size: 11px;
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 0;
+        background: #fff;
         color: #e53935;
-        margin-top: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 6px;
+        border: 1px solid #e53935;
+        white-space: nowrap;
+        z-index: 10;
+        pointer-events: none;
+        box-shadow: 0 2px 8px rgba(229,57,53,0.12);
+        animation: errorFadeIn 0.18s ease;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 14px;
+          border: 5px solid transparent;
+          border-top-color: #e53935;
+        }
+      }
+
+      @keyframes errorFadeIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
 
       label {
@@ -176,7 +205,7 @@ const ConsultationStyleWrapper = styled.section`
       flex-shrink: 0;
 
       &.active {
-        background: #ff6600;
+        background: #ed740a;
       }
 
       .whatsapp-toggle-thumb {
@@ -208,6 +237,14 @@ const ConsultationStyleWrapper = styled.section`
     overflow: visible !important;
     align-self: center !important;
     margin-top: 16px;
+    background: linear-gradient(90deg, #ed740a 0%, #f5a04a 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    &:hover { opacity: 0.88; }
     .btn-inner { height: 42px !important; }
   }
 
@@ -257,7 +294,7 @@ const ConsultationStyleWrapper = styled.section`
         font-size: 12px;
         cursor: pointer;
         &:hover { background: #f0f0f0; }
-        &.selected { background: #fff3ec; font-weight: 600; }
+        &.selected { background: #fdf0e6; font-weight: 600; }
       }
     }
 

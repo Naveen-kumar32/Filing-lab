@@ -91,7 +91,23 @@ const Consultation = () => {
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: validate(field, value) }));
+    // Clear error for this field once user starts correcting it
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const fields = ["name", "phone", "email"];
+    const clearedErrors = { name: "", phone: "", email: "" };
+    for (const field of fields) {
+      const err = validate(field, formData[field]);
+      if (err) {
+        setErrors({ ...clearedErrors, [field]: err });
+        return;
+      }
+    }
+    setErrors(clearedErrors);
+    // TODO: submit form data
   };
 
   useEffect(() => {
@@ -146,7 +162,7 @@ Contact@filinglab.com
               <ScrollAnimate delay={300}>
               <div className="consultation-form">
                 <h5 className="consultation-form-title" style={{color:"#ed740a"}}>Provide your details for a complete quote and professional consultation</h5>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label>Full Name *</label>
                     <input
@@ -213,7 +229,7 @@ Contact@filinglab.com
                     </div>
                   </div>
                  
-                  <button className="consultation-btn">
+                  <button type="submit" className="consultation-btn">
                     Get a Free Expert Consultation
                   </button>
                   <p className="consultation-disclaimer">By clicking, you agree to receive updates about our services as outlined in our <a href="/privacy-policy">Privacy Statement</a>.</p>

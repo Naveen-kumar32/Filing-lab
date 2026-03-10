@@ -193,8 +193,8 @@ const FooterStyleWrapper = styled.footer`
             transition: all 0.3s ease;
             
             &:hover {
-              color: #ff8c3a;
-              text-shadow: 0 0 4px rgba(255, 102, 0, 0.3), 0 0 8px rgba(255, 154, 66, 0.2);
+              color: #ed740a;
+              text-shadow: 0 0 4px rgba(237, 116, 10, 0.3), 0 0 8px rgba(237, 116, 10, 0.2);
             }
           }
           
@@ -740,8 +740,8 @@ const FooterStyleWrapper = styled.footer`
 }
 
 .footer-links-list a:hover {
-  color: #ff8c3a;
-  text-shadow: 0 0 4px rgba(255, 102, 0, 0.3), 0 0 8px rgba(255, 154, 66, 0.2);
+  color: #ed740a;
+  text-shadow: 0 0 4px rgba(237, 116, 10, 0.3), 0 0 8px rgba(237, 116, 10, 0.2);
 }
 
 .separator {
