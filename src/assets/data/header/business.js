@@ -37,7 +37,7 @@ const businessData = [
     Maintitle: "Business Restructuring & Closure",
     menuList: [
       { title: "Conversion of Pvt Ltd to Public Ltd", dataMenu: "conversion-pvt-to-public", url: "/public-limited-company-registration" },
-      { title: "Conversion of Sole Proprietorship to Private Limited Company", dataMenu: "conversion-sole-to-private", url: "/companyregistration" },
+      { title: "Conversion of Sole Proprietorship to Pvt Ltd Company", dataMenu: "conversion-sole-to-private", url: "/companyregistration" },
       { title: "Conversion of LLP to Private Limited Company", dataMenu: "conversion-llp-to-private", url: "/LLPRegistration" },
       { title: "Conversion of OPC into Private Limited Company", dataMenu: "conversion-opc-to-private", url: "/one-person-company-registration" },
       { title: "Conversion of Partnership Firm to LLP", dataMenu: "conversion-partnership-to-llp", url: "/LLPRegistration" },

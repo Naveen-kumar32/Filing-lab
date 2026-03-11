@@ -43,6 +43,8 @@ const MegaMenuWrapper = styled.div`
     font-weight: 500;
     font-size: 14px;
     line-height: 1.6;
+    white-space: normal;
+    word-break: break-word;
   }
 
   .menu-title-item:hover {
