@@ -1019,15 +1019,17 @@ const HeaderStyleWrapper = styled.header`
     }
     /* Sign In button — fixed dark navy, no blue override on sticky */
     .bg-white-btn {
-      background-color: #0d1b4b !important;
+      background-color: #002145 !important;
       color: #ffffff !important;
       padding: 6px 18px !important;
       font-size: 14px;
+      transition: transform 0.2s ease !important;
       span {
         color: #ffffff !important;
       }
       &:hover {
-        background-color: #1a2f6e !important;
+        background-color: #002145 !important;
+        transform: scale(1.07);
       }
     }
   }

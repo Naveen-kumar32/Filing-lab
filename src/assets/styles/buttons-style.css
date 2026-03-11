@@ -1064,7 +1064,7 @@
 .bg-navy-btn {
   width: 150px;
   height: 50px;
-  background: #041646;
+  background: #002145;
   border-radius: 100px;
   display: flex;
   align-items: center;
@@ -1072,8 +1072,8 @@
   text-transform: capitalize;
   color: #fff !important;
   position: relative;
-  overflow: hidden;
   font-weight: 700;
+  transition: transform 0.2s ease;
 }
 .bg-navy-btn .btn-inner {
   display: inline-block;
@@ -1081,36 +1081,28 @@
 .bg-navy-btn span {
   position: relative;
   z-index: 11;
-  transition: opacity 0.6s, transform 0.8s;
-  transition-timing-function: cubic-bezier(0.15, 0.85, 0.31, 1);
   color: #fff;
 }
 .bg-navy-btn span:nth-child(2) {
-  display: inline-block;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 80%);
-  opacity: 0;
+  display: none;
 }
 .bg-navy-btn:hover,
 .bg-navy-btn:focus {
-  background-color: #041646;
+  background-color: #002145;
   color: #ffffff !important;
+  transform: scale(1.07);
 }
 .bg-navy-btn:hover .btn-inner,
 .bg-navy-btn:focus .btn-inner {
-  transform: translateY(-150%);
+  transform: none;
 }
 .bg-navy-btn:hover span:nth-child(2),
 .bg-navy-btn:focus span:nth-child(2) {
-  transform: translate(-50%, 100%);
-  opacity: 1;
+  display: none;
 }
 .bg-navy-btn:hover span .btn-normal-text,
 .bg-navy-btn:focus span .btn-normal-text {
-  opacity: 0;
+  opacity: 1;
 }
 .bg-navy-btn:hover span,
 .bg-navy-btn:focus span {

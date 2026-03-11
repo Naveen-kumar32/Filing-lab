@@ -77,6 +77,9 @@ const Consultation = () => {
   const [whatsappUpdates, setWhatsappUpdates] = useState(true);
   const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
   const [errors, setErrors] = useState({ name: "", phone: "", email: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [fading, setFading] = useState(false);
   const dropdownRef = useRef(null);
 
   const validate = (field, value) => {
@@ -107,7 +110,9 @@ const Consultation = () => {
       }
     }
     setErrors(clearedErrors);
-    // TODO: submit form data
+    setSubmitted(true);
+    setTimeout(() => setFading(true), 2000);
+    setTimeout(() => setVisible(false), 2700);
   };
 
   useEffect(() => {
@@ -120,7 +125,7 @@ const Consultation = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   return (
-    <ConsultationStyleWrapper className="consultation-section">
+    <ConsultationStyleWrapper className={`consultation-section${fading ? " fading-out" : ""}`} style={{ display: visible ? "" : "none" }}>
       <div className="container">
         <ScrollAnimate>
         <div className="consultation-card">
@@ -161,20 +166,30 @@ Contact@filinglab.com
             <div className="col-md-6">
               <ScrollAnimate delay={300}>
               <div className="consultation-form">
+                {submitted ? (
+                  <div className="consultation-thankyou">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="12" fill="#e6f9ee"/>
+                      <path d="M7 12.5l3.5 3.5 6.5-7" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <h4>Thank You!</h4>
+                    <p>We've received your details. Our expert will contact you shortly.</p>
+                  </div>
+                ) : (
+                  <>
                 <h5 className="consultation-form-title" style={{color:"#ed740a"}}>Provide your details for a complete quote and professional consultation</h5>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label>Full Name *</label>
+                    <label>Full Name * {errors.name && <span className="field-error">{errors.name}</span>}</label>
                     <input
                       type="text"
                       placeholder="Enter Your Name"
                       value={formData.name}
                       onChange={(e) => handleChange("name", e.target.value)}
                     />
-                    {errors.name && <span className="field-error">{errors.name}</span>}
                   </div>
                   <div className="form-group">
-                    <label>Phone Number *</label>
+                    <label>Phone Number * {errors.phone && <span className="field-error">{errors.phone}</span>}</label>
                     <div className="phone-input-group" ref={dropdownRef}>
                       <div className="country-code-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
                         <span>{selectedCountry.flag}</span>
@@ -199,20 +214,24 @@ Contact@filinglab.com
                         placeholder="Enter Your Phone No."
                         className="phone-number-input"
                         value={formData.phone}
-                        onChange={(e) => handleChange("phone", e.target.value)}
+                        onChange={(e) => handleChange("phone", e.target.value.replace(/\D/g, ""))}
+                        onKeyDown={(e) => {
+                          if (!/[0-9]/.test(e.key) && !["Backspace","Delete","ArrowLeft","ArrowRight","Tab","Enter"].includes(e.key)) {
+                            e.preventDefault();
+                          }
+                        }}
+                        inputMode="numeric"
                       />
                     </div>
-                    {errors.phone && <span className="field-error">{errors.phone}</span>}
                   </div>
                   <div className="form-group">
-                    <label>Enter Your Email *</label>
+                    <label>Enter Your Email * {errors.email && <span className="field-error">{errors.email}</span>}</label>
                     <input
-                      type="email"
+                      type="text"
                       placeholder="Enter Your Email"
                       value={formData.email}
                       onChange={(e) => handleChange("email", e.target.value)}
                     />
-                    {errors.email && <span className="field-error">{errors.email}</span>}
                   </div>
                   <div className="whatsapp-toggle-row">
                     <div className="whatsapp-toggle-label">
@@ -234,6 +253,8 @@ Contact@filinglab.com
                   </button>
                   <p className="consultation-disclaimer">By clicking, you agree to receive updates about our services as outlined in our <a href="/privacy-policy">Privacy Statement</a>.</p>
                 </form>
+                  </>
+                )}
               </div>
               </ScrollAnimate>
             </div>

@@ -67,6 +67,44 @@ const ConsultationStyleWrapper = styled.section`
     color: #fff !important;
     line-height: 1.4 !important;
   }
+
+  .consultation-thankyou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 300px;
+    gap: 16px;
+    text-align: center;
+    animation: thankYouFadeIn 0.4s ease;
+
+    h4 {
+      color: #22c55e;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+    }
+    p {
+      color: #444;
+      font-size: 14px;
+      max-width: 280px;
+      margin: 0;
+    }
+  }
+
+  @keyframes thankYouFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  &.fading-out {
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+  }
+
   .consultation-form {
     padding: 60px 60px 60px 30px;
     display: flex;
@@ -120,39 +158,17 @@ const ConsultationStyleWrapper = styled.section`
       }
 
       .field-error {
-        position: absolute;
-        bottom: calc(100% + 6px);
-        left: 0;
-        background: #fff;
         color: #e53935;
-        font-size: 11px;
+        font-size: 9px;
         font-weight: 600;
-        padding: 5px 12px;
-        border-radius: 6px;
-        border: 1px solid #e53935;
-        white-space: nowrap;
-        z-index: 10;
-        pointer-events: none;
-        box-shadow: 0 2px 8px rgba(229,57,53,0.12);
-        animation: errorFadeIn 0.18s ease;
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: 100%;
-          left: 14px;
-          border: 5px solid transparent;
-          border-top-color: #e53935;
-        }
-      }
-
-      @keyframes errorFadeIn {
-        from { opacity: 0; transform: translateY(4px); }
-        to   { opacity: 1; transform: translateY(0); }
+        margin-left: 6px;
       }
 
       label {
-        font-weight: 500;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0;
         font-size: 15px;
         line-height: 30px;
         text-transform: uppercase;
