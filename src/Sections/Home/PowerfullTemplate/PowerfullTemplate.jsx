@@ -429,7 +429,7 @@ make payment, and receive confirmation with ongoing support.</h6>
       {showModal && (
         <ModalOverlay onClick={handleOverlayClick}>
           <ModalContent>
-            <Consultation />
+            <Consultation onClose={handleCloseModal} />
           </ModalContent>
         </ModalOverlay>
       )}

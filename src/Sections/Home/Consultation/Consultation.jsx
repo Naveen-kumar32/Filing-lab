@@ -71,7 +71,7 @@ const REGEX = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 };
 
-const Consultation = () => {
+const Consultation = ({ onClose }) => {
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [whatsappUpdates, setWhatsappUpdates] = useState(true);
@@ -111,7 +111,10 @@ const Consultation = () => {
     }
     setErrors(clearedErrors);
     setSubmitted(true);
-    setTimeout(() => setFading(true), 2000);
+    setTimeout(() => {
+      setFading(true);
+      if (onClose) onClose();
+    }, 2000);
     setTimeout(() => setVisible(false), 2700);
   };
 

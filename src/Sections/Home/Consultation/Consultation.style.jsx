@@ -101,8 +101,12 @@ const ConsultationStyleWrapper = styled.section`
   &.fading-out {
     opacity: 0;
     transform: scale(0.97);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease, max-height 0.6s ease, padding 0.6s ease;
     pointer-events: none;
+    overflow: hidden;
+    max-height: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .consultation-form {
